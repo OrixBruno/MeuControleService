@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Service", "Orix.MeuControle.Service\Orix.MeuControle.Service.csproj", "{D827D423-7A1F-41C4-97D8-4976008FBAE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Domain", "Orix.MeuControle.Domain\Orix.MeuControle.Domain.csproj", "{138B209A-61A9-4517-B02D-EC1534653B65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Repository", "Orix.MeuControle.Repository\Orix.MeuControle.Repository.csproj", "{F3BAA43A-7F99-4C1B-B0C0-83EDF3F3FA25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.DataAccess", "Orix.MeuControle.DataAccess\Orix.MeuControle.DataAccess.csproj", "{18B774B8-42F9-4A17-A6AF-227894A54F2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{138B209A-61A9-4517-B02D-EC1534653B65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138B209A-61A9-4517-B02D-EC1534653B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138B209A-61A9-4517-B02D-EC1534653B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138B209A-61A9-4517-B02D-EC1534653B65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BAA43A-7F99-4C1B-B0C0-83EDF3F3FA25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BAA43A-7F99-4C1B-B0C0-83EDF3F3FA25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BAA43A-7F99-4C1B-B0C0-83EDF3F3FA25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BAA43A-7F99-4C1B-B0C0-83EDF3F3FA25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
