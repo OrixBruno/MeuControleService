@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Owin.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -22,6 +23,12 @@ namespace Orix.MeuControle.Service
                 routeTemplate: "api/v1/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //using (WebApp.Start("http://localhost:8080;"))
+            //{
+            //    Console.WriteLine("Iniciado");
+            //    Console.ReadLine();
+            //}
         }
     }
 }

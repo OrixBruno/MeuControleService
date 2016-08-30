@@ -21,59 +21,27 @@ namespace Orix.MeuControle.Service.Controllers
         }
 
         // GET: api/v1/Territorio/5
-        public string Get(int id)
+        public TerritorioDomainModel Get(int id)
         {
-            try
-            {
-                return "XD";
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            return _repository.Buscar(id);
         }
 
         // POST: api/v1/Territorio
-        public void Post([FromBody]string value)
+        public TerritorioDomainModel Post([FromBody]TerritorioDomainModel territorioNovo)
         {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            return _repository.Cadastrar(territorioNovo);
         }
 
-        // PUT: api/v1/Territorio/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/v1/Territorio
+        public void Put([FromBody]TerritorioDomainModel territorioAtualizar)
         {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            _repository.Editar(territorioAtualizar);
         }
 
         // DELETE: api/v1/Territorio/5
         public void Delete(int id)
         {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            _repository.Excluir(id);
         }
     }
 }

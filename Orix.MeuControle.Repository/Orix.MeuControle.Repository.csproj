@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexao.cs" />
     <Compile Include="Contracts\Base\IGravacao.cs" />
     <Compile Include="Contracts\Base\ILeitura.cs" />
     <Compile Include="Contracts\ILetraRepository.cs" />
