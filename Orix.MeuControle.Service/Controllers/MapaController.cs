@@ -27,13 +27,13 @@ namespace Orix.MeuControle.Service.Controllers
         }
 
         // POST: api/v1/Mapa
-        public void Post([FromBody]MapaDomainModel value)
+        public void Post(MapaDomainModel value)
         {
             _repository.Cadastrar(value);
         }
 
         // PUT: api/v1/Mapa/5
-        public void Put([FromBody]MapaDomainModel value)
+        public void Put(MapaDomainModel value)
         {
             _repository.Editar(value);
         }

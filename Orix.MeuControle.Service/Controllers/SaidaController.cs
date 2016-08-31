@@ -27,13 +27,13 @@ namespace Orix.MeuControle.Service.Controllers
         }
 
         // POST: api/v1/Saida
-        public SaidaDomainModel Post([FromBody]SaidaDomainModel value)
+        public SaidaDomainModel Post(SaidaDomainModel value)
         {
             return _repository.Cadastrar(value);
         }
 
         // PUT: api/v1/Saida/5
-        public void Put([FromBody]SaidaDomainModel value)
+        public void Put(SaidaDomainModel value)
         {
             _repository.Editar(value);
         }

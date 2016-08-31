@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin.Cors;
+using Orix.MeuControle.Service.Controllers;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace Service
 {
     public class Startup
     {
+        Type TerritorioController = typeof(TerritorioController);
+        Type LetraController = typeof(LetraController);
+        Type MapaController = typeof(MapaController);
+        Type SaidaController = typeof(SaidaController);
+
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();

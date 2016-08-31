@@ -27,13 +27,13 @@ namespace Orix.MeuControle.Service.Controllers
         }
 
         // POST: api/v1/Letra
-        public void Post([FromBody]LetraDomainModel value)
+        public void Post(LetraDomainModel value)
         {
             _repository.Cadastrar(value);
         }
 
         // PUT: api/v1/Letra/5
-        public void Put([FromBody]LetraDomainModel value)
+        public void Put(LetraDomainModel value)
         {
             _repository.Editar(value);
         }
