@@ -1,10 +1,13 @@
-﻿using Microsoft.Owin.Cors;
-using Orix.MeuControle.Service.Controllers;
+﻿using System;
+using Microsoft.Owin;
 using Owin;
-using System;
 using System.Web.Http;
+using Orix.MeuControle.Service.Controllers;
+using Microsoft.Owin.Cors;
 
-namespace Service
+[assembly: OwinStartup(typeof(Orix.MeuControle.ServiceOwin.Startup))]
+
+namespace Orix.MeuControle.ServiceOwin
 {
     public class Startup
     {
