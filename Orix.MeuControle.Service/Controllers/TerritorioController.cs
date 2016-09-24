@@ -27,13 +27,13 @@ namespace Orix.MeuControle.Service.Controllers
         }
 
         // POST: api/v1/Territorio
-        public TerritorioDomainModel Post([FromBody]TerritorioDomainModel territorioNovo)
+        public TerritorioDomainModel Post(TerritorioDomainModel territorioNovo)
         {
             return _repository.Cadastrar(territorioNovo);
         }
 
         // PUT: api/v1/Territorio
-        public void Put([FromBody]TerritorioDomainModel territorioAtualizar)
+        public void Put(TerritorioDomainModel territorioAtualizar)
         {
             _repository.Editar(territorioAtualizar);
         }
