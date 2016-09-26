@@ -54,10 +54,12 @@
     <Compile Include="Contracts\ILetraRepository.cs" />
     <Compile Include="Contracts\IMapaRepository.cs" />
     <Compile Include="Contracts\ISaidaRepository.cs" />
+    <Compile Include="Contracts\ISurdoRepository.cs" />
     <Compile Include="Contracts\ITerritorioRepository.cs" />
     <Compile Include="Implementation\Base\BaseRepository.cs" />
     <Compile Include="Implementation\LetraRepository.cs" />
     <Compile Include="Implementation\MapaRepository.cs" />
+    <Compile Include="Implementation\SurdoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\SaidaRepository.cs" />
     <Compile Include="Implementation\TerritorioRepository.cs" />

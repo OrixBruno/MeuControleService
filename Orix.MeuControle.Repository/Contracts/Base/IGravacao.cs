@@ -8,6 +8,6 @@ namespace Orix.MeuControle.Repository.Contracts.Base
 
         void Editar(TClasse dadosTela);
 
-        void Excluir(Int32 id);
+        TClasse Excluir(Int32 id);
     }
 }

@@ -34,14 +34,15 @@ namespace Orix.MeuControle.Repository.Implementation.Base
         }
         public void Editar(TEntity dadosTela)
         {
-            _conexao.Entry(dadosTela).State = EntityState.Modified;
+             _conexao.Entry(dadosTela).State = EntityState.Modified;
             SaveChanges();
         }
 
-        public void Excluir(Int32 id)
+        public TEntity Excluir(Int32 id)
         {
-            _table.Remove(_table.Find(id));
+            var table = _table.Remove(_table.Find(id));
             SaveChanges();
+            return table;
         }
 
         public List<TEntity> Listar()

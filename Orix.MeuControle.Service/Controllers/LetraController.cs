@@ -1,10 +1,6 @@
 ﻿using Orix.MeuControle.Domain.Mapa;
 using Orix.MeuControle.Repository.Implementation;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -15,7 +11,7 @@ namespace Orix.MeuControle.Service.Controllers
     {
         LetraRepository _repository = new LetraRepository();
         // GET: api/v1/Letra
-        public IEnumerable<LetraDomainModel> Get()
+        public List<LetraDomainModel> Get()
         {
             return _repository.Listar();
         }
@@ -39,9 +35,9 @@ namespace Orix.MeuControle.Service.Controllers
         }
 
         // DELETE: api/v1/Letra/5
-        public void Delete(int id)
+        public LetraDomainModel Delete(int id)
         {
-            _repository.Excluir(id);
+            return _repository.Excluir(id);
         }
     }
 }

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Repository
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.DataAccess", "Orix.MeuControle.DataAccess\Orix.MeuControle.DataAccess.csproj", "{18B774B8-42F9-4A17-A6AF-227894A54F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Service_Owin", "Service\Orix.MeuControle.Service_Owin.csproj", "{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.ServiceOwin", "Orix.MeuControle.ServiceOwin\Orix.MeuControle.ServiceOwin.csproj", "{980000E7-4F36-4656-984E-109DF1192C9C}"
 EndProject

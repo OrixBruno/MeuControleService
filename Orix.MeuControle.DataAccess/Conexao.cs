@@ -1,4 +1,5 @@
 ﻿using Orix.MeuControle.DataAccess.Mappings;
+using Orix.MeuControle.Domain;
 using Orix.MeuControle.Domain.Mapa;
 using System;
 using System.Data.Entity;
@@ -8,8 +9,8 @@ namespace Orix.MeuControle.DataAccess
 {
     public sealed class Conexao : DbContext
     {
-        public Conexao()
-            : base(@"Data Source=(localdb)\v11.0;Initial Catalog=DBCONTROLEMAPAS;Integrated Security=True")
+        public Conexao()//Data Source=(localdb)\v11.0;Initial Catalog=DBCONTROLEMAPAS;Integrated Security=True
+            : base(@"Data Source = bancoprojetos.mssql.somee.com; Initial Catalog = bancoprojetos; Persist Security Info=True;User ID = Aliorus_SQLLogin_1; Password=4ouegmr6y9")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
@@ -18,7 +19,7 @@ namespace Orix.MeuControle.DataAccess
             //Database.SetInitializer<Conexao>(new MigrateDatabaseToLatestVersion<Conexao, Configuration>());
         }
 
-        //public DbSet<PessoaDomainModel> Pessoa { get; set; }
+        public DbSet<SurdoDomainModel> Surdo { get; set; }
         public DbSet<MapaDomainModel> Mapa { get; set; }
         public DbSet<LetraDomainModel> Letra { get; set; }
         public DbSet<SaidaDomainModel> Saida { get; set; }
@@ -39,6 +40,7 @@ namespace Orix.MeuControle.DataAccess
             modelBuilder.Configurations.Add(new TerritorioMapping());
             modelBuilder.Configurations.Add(new SaidaMapping());
             modelBuilder.Configurations.Add(new FotoMapping());
+            modelBuilder.Configurations.Add(new SurdoMapping());
         }
     }
 }
