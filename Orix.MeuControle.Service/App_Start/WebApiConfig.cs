@@ -23,5 +23,6 @@ namespace Orix.MeuControle.Service
                 defaults: new { id = RouteParameter.Optional }
             );
         }
+        
     }
 }

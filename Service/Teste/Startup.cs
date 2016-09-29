@@ -4,7 +4,7 @@ using Owin;
 using System;
 using System.Web.Http;
 
-namespace Service
+namespace Service.Teste
 {
     public class Startup
     {
