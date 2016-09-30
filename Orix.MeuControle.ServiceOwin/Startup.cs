@@ -24,16 +24,9 @@ namespace Orix.MeuControle.ServiceOwin
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.Indent = true;
-            config.EnableCors();
+            //config.EnableCors();
 
-            //app.UseCors(CorsOptions.AllowAll);
-            // Web API routes
-            //config.MapHttpAttributeRoutes();
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/v1/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
+            app.UseCors(CorsOptions.AllowAll);
 
             ConfigureOAuth(app);
             WebApiConfig.Register(config);

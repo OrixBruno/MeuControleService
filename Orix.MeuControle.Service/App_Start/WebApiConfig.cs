@@ -10,12 +10,10 @@ namespace Orix.MeuControle.Service
     {
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("*", "*", "*");
-
             // Web API configuration and services
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.Indent = true;
-            config.EnableCors(cors);
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();

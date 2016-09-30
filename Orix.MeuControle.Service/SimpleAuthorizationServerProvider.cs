@@ -18,8 +18,12 @@ namespace Orix.MeuControle.Service
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
 
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
+            //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            var header = context.OwinContext.Response.Headers.SingleOrDefault(h => h.Key == "Access-Control-Allow-Origin");
+            if (header.Equals(default(KeyValuePair<string, string[]>)))
+            {
+                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            }
             using (var _repository = new FakeRepository())
             {
                 var user = _repository.Authenticate(context.UserName, context.Password);
