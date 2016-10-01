@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Service", "Orix.MeuControle.Service\Orix.MeuControle.Service.csproj", "{D827D423-7A1F-41C4-97D8-4976008FBAE6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Domain", "Orix.MeuControle.Domain\Orix.MeuControle.Domain.csproj", "{138B209A-61A9-4517-B02D-EC1534653B65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Repository", "Orix.MeuControle.Repository\Orix.MeuControle.Repository.csproj", "{F3BAA43A-7F99-4C1B-B0C0-83EDF3F3FA25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.DataAccess", "Orix.MeuControle.DataAccess\Orix.MeuControle.DataAccess.csproj", "{18B774B8-42F9-4A17-A6AF-227894A54F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Service_Owin", "Service\Orix.MeuControle.Service_Owin.csproj", "{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.ServiceOwin", "Orix.MeuControle.ServiceOwin\Orix.MeuControle.ServiceOwin.csproj", "{980000E7-4F36-4656-984E-109DF1192C9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orix.MeuControle.Api", "Orix.MeuControle.Api\Orix.MeuControle.Api.csproj", "{D6D41F75-5087-4C94-9BFF-C4D63E9F06B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D827D423-7A1F-41C4-97D8-4976008FBAE6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{138B209A-61A9-4517-B02D-EC1534653B65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{138B209A-61A9-4517-B02D-EC1534653B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{138B209A-61A9-4517-B02D-EC1534653B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,14 +29,10 @@ Global
 		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18B774B8-42F9-4A17-A6AF-227894A54F2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CEA75E5-D6A8-4C1F-A680-637AD50FF8C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{980000E7-4F36-4656-984E-109DF1192C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{980000E7-4F36-4656-984E-109DF1192C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{980000E7-4F36-4656-984E-109DF1192C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{980000E7-4F36-4656-984E-109DF1192C9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D41F75-5087-4C94-9BFF-C4D63E9F06B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D41F75-5087-4C94-9BFF-C4D63E9F06B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D41F75-5087-4C94-9BFF-C4D63E9F06B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D41F75-5087-4C94-9BFF-C4D63E9F06B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
