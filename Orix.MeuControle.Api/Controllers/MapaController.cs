@@ -44,3 +44,4 @@ namespace Orix.MeuControle.Api.Controllers
             return _repository.Excluir(id);
         }
     }
+}

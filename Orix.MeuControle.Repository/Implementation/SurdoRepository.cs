@@ -10,5 +10,9 @@ namespace Orix.MeuControle.Repository.Implementation
 {
     public class SurdoRepository : BaseRepository<SurdoDomainModel>, Contracts.ISurdoRepository
     {
+        public new List<SurdoDomainModel> ListarPorTexto(String texto)
+        {
+            return base._table.Where(x=>x.Nome.Contains(texto)).ToList();
+        }
     }
 }

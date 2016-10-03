@@ -49,5 +49,10 @@ namespace Orix.MeuControle.Repository.Implementation.Base
         {
             return _table.ToList();
         }
+
+        public List<TEntity> ListarPorTexto(String texto)
+        {
+            return _table.ToList();
+        }
     }
 }

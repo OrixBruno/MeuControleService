@@ -19,7 +19,11 @@ namespace Orix.MeuControle.Api.Controllers
         {
             return _repository.Listar();
         }
-
+        // GET: api/Surdo?nome=
+        public List<SurdoDomainModel> Get(String nome)
+        {
+            return _repository.ListarPorTexto(nome);
+        }
         // GET: api/Surdo/5
         public SurdoDomainModel Get(int id)
         {
