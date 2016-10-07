@@ -19,7 +19,8 @@ namespace Orix.MeuControle.Api.Controllers
         {
             return _repository.Listar();
         }
-        // GET: api/Surdo?nome=
+        // GET: api/v1/Surdo?nome=
+        [Authorize]
         public List<SurdoDomainModel> Get(String nome)
         {
             return _repository.ListarPorTexto(nome);

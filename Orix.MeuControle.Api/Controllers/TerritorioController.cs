@@ -15,12 +15,14 @@ namespace Orix.MeuControle.Api.Controllers
     {
         TerritorioRepository _repository = new TerritorioRepository();
         // GET: api/v1/Territorio
+        [Authorize]
         public List<TerritorioDomainModel> Get()
         {
             return _repository.Listar();
         }
 
         // GET: api/v1/Territorio/5
+        [Authorize]
         public TerritorioDomainModel Get(int id)
         {
             return _repository.Buscar(id);
