@@ -16,6 +16,7 @@ namespace Orix.MeuControle.Api.Providers
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
+        UserManager<IdentityUser> _userManager;
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -29,14 +30,12 @@ namespace Orix.MeuControle.Api.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var header = context.OwinContext.Response.Headers.SingleOrDefault(h => h.Key == "Access-Control-Allow-Origin");
-            if (header.Equals(default(KeyValuePair<string, string[]>)))
+            //var header = context.OwinContext.Response.Headers.SingleOrDefault(h => h.Key == "Access-Control-Allow-Origin");
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+
+            using (var _repository = new AuthRepository())
             {
-                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-            }
-            using (var _repository = new FakeRepository())
-            {
-                var user = _repository.Authenticate(context.UserName, context.Password);
+                var user = _repository.AuthenticateAdm(context.UserName, context.Password);
 
                 if (user == null)
                 {
@@ -50,26 +49,6 @@ namespace Orix.MeuControle.Api.Providers
             identity.AddClaim(new Claim("role", "user"));
 
             context.Validated(identity);
-
-            //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
-            //var user = await userManager.FindAsync(context.UserName, context.Password);
-
-            //if (user == null)
-            //{
-            //    context.SetError("invalid_grant", "The user name or password is incorrect.");
-            //    return;
-            //}
-
-            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //   OAuthDefaults.AuthenticationType);
-            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //    CookieAuthenticationDefaults.AuthenticationType);
-
-            //AuthenticationProperties properties = CreateProperties(user.UserName);
-            //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            //context.Validated(ticket);
-            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
@@ -82,16 +61,9 @@ namespace Orix.MeuControle.Api.Providers
             return Task.FromResult<object>(null);
         }
 
-        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            // Resource owner password credentials does not provide a client ID.
-
-            if (context.ClientId == null)
-            {
-                context.Validated();
-            }
-
-            return Task.FromResult<object>(null);
+            context.Validated();
         }
 
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
@@ -118,16 +90,21 @@ namespace Orix.MeuControle.Api.Providers
             return new AuthenticationProperties(data);
         }
     }
-    public class FakeRepository : IDisposable
+
+    public class AuthRepository : IDisposable
     {
-        public void Dispose()
-        {
+        private AuthContext _ctx;
 
+        private UserManager<IdentityUser> _userManager;
+
+        public AuthRepository()
+        {
+            _ctx = new AuthContext();
+            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
-
-        internal object Authenticate(string userName, string password)
+        internal object AuthenticateAdm(string usuario, string senha)
         {
-            if (userName == "adm" && password == "123")
+            if (usuario == "adm" && senha == "123")
             {
                 return new { };
             }
@@ -135,6 +112,30 @@ namespace Orix.MeuControle.Api.Providers
             {
                 return null;
             }
+        }
+        public async Task<IdentityResult> RegistrarUsuario(UsuarioModel usuarioModel)
+        {
+            IdentityUser userIdentity = new IdentityUser
+            {
+                UserName = usuarioModel.Usuario
+            };
+
+            var result = await _userManager.CreateAsync(userIdentity, usuarioModel.Senha);
+
+            return result;
+        }
+
+        public async Task<IdentityUser> ProcurarUsuario(string userName, string password)
+        {
+            IdentityUser user = await _userManager.FindAsync(userName, password);
+
+            return user;
+        }
+
+        public void Dispose()
+        {
+            _ctx.Dispose();
+            _userManager.Dispose();
         }
     }
 }

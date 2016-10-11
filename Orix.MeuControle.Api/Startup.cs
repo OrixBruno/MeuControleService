@@ -5,6 +5,9 @@ using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 using Microsoft.Owin.Cors;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Optimization;
 
 [assembly: OwinStartup(typeof(Orix.MeuControle.Api.Startup))]
 
@@ -16,13 +19,16 @@ namespace Orix.MeuControle.Api
         {
             var config = new HttpConfiguration();
 
+            ConfigureAuth(app);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
 
             WebApiConfig.Register(config);
-
-
-            ConfigureAuth(app);
+            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
