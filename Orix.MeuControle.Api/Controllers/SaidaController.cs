@@ -11,11 +11,12 @@ using System.Web.Http.Cors;
 namespace Orix.MeuControle.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class SaidaController : ApiController
     {
         SaidaRepository _repository = new SaidaRepository();
         // GET: api/v1/Saida
-        public IEnumerable<SaidaDomainModel> Get()
+        public List<SaidaDomainModel> Get()
         {
             return _repository.Listar();
         }

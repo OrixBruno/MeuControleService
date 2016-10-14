@@ -11,6 +11,7 @@ using System.Web.Http.Cors;
 namespace Orix.MeuControle.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class SurdoController : ApiController
     {
         SurdoRepository _repository = new SurdoRepository();
@@ -19,8 +20,7 @@ namespace Orix.MeuControle.Api.Controllers
         {
             return _repository.Listar();
         }
-        // GET: api/v1/Surdo?nome=
-        [Authorize]
+        // GET: api/v1/Surdo?nome=        
         public List<SurdoDomainModel> Get(String nome)
         {
             return _repository.ListarPorTexto(nome);

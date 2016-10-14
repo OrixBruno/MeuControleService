@@ -11,6 +11,7 @@ using System.Web.Http.Cors;
 namespace Orix.MeuControle.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class MapaController : ApiController
     {
         MapaRepository _repository = new MapaRepository();

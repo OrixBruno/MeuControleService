@@ -11,6 +11,7 @@ using System.Web.Http.Cors;
 namespace Orix.MeuControle.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class LetraController : ApiController
     {
         LetraRepository _repository = new LetraRepository();
