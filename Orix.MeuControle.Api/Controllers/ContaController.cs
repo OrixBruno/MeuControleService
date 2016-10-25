@@ -22,7 +22,7 @@ namespace Orix.MeuControle.Api.Controllers
 
         [AllowAnonymous]
         [Route("Registro")]
-        public async Task<IHttpActionResult> Register(UsuarioModel userModel)
+        public async Task<IHttpActionResult> Register(UsuarioViewModel userModel)
         {
             if (!ModelState.IsValid)
             {

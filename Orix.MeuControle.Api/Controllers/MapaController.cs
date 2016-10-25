@@ -43,6 +43,6 @@ namespace Orix.MeuControle.Api.Controllers
         public MapaDomainModel Delete(int id)
         {
             return _repository.Excluir(id);
-        }
+        }        
     }
 }

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Orix.MeuControle.Api.Models
 {
-    public class UsuarioModel
+    public class UsuarioViewModel
     {
         [Required]
         [Display(Name = "Usuario")]

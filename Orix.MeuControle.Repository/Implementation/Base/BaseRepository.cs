@@ -14,7 +14,6 @@ namespace Orix.MeuControle.Repository.Implementation.Base
         {
             _conexao = new Conexao();
             _table = _conexao.Set<TEntity>();
-
         }
         private void SaveChanges()
         {
@@ -23,19 +22,49 @@ namespace Orix.MeuControle.Repository.Implementation.Base
 
         public TEntity Buscar(Int32 id)
         {
-            return _table.Find(id);
+            try
+            {
+                return _table.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public TEntity Cadastrar(TEntity dadosTela)
         {
             var table = _table.Add(dadosTela);
-            SaveChanges();
+            TratamentoExcecao(() =>
+            {
+                SaveChanges();
+            });
+
+            return table;
+        }
+        public List<TEntity> CadastrarLista(List<TEntity> listaDados)
+        {
+            List<TEntity> table = new List<TEntity>();
+            foreach (var item in listaDados)
+            {
+                table.Add(
+                    _table.Add(item));
+                TratamentoExcecao(() =>
+                {
+                    SaveChanges();
+                });
+            }           
+
             return table;
         }
         public void Editar(TEntity dadosTela)
         {
-             _conexao.Entry(dadosTela).State = EntityState.Modified;
-            SaveChanges();
+            _conexao.Entry(dadosTela).State = EntityState.Modified;
+
+            TratamentoExcecao(() =>
+            {
+                SaveChanges();
+            });     
         }
 
         public TEntity Excluir(Int32 id)
@@ -47,12 +76,34 @@ namespace Orix.MeuControle.Repository.Implementation.Base
 
         public List<TEntity> Listar()
         {
-            return _table.ToList();
+            try
+            {
+                return _table.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<TEntity> ListarPorTexto(String texto)
         {
             return _table.ToList();
+        }
+
+        protected void TratamentoExcecao(Action acao)
+        {
+            try
+            {
+                acao();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("Cannot insert duplicate key row in object"))
+                    throw new Exception("Não é permitido inserir itens duplicados!");
+
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

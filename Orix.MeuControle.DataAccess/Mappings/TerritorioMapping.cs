@@ -1,4 +1,6 @@
 ﻿using Orix.MeuControle.Domain.Mapa;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Orix.MeuControle.DataAccess.Mappings
@@ -11,7 +13,7 @@ namespace Orix.MeuControle.DataAccess.Mappings
 
             HasKey(x => x.ID);
 
-            Property(x => x.Nome).HasMaxLength(100).IsRequired().HasColumnName("NM_TERRITORIO");
+            Property(x => x.Nome).HasMaxLength(100).HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true })).IsRequired().HasColumnName("NM_TERRITORIO");
         }
     }
 }

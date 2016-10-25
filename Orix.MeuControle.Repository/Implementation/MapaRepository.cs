@@ -2,6 +2,8 @@
 using Orix.MeuControle.Repository.Implementation.Base;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
+using System;
 
 namespace Orix.MeuControle.Repository.Implementation
 {
@@ -10,7 +12,20 @@ namespace Orix.MeuControle.Repository.Implementation
 
         public new List<MapaDomainModel> Listar()
         {
-            return base.Listar().OrderBy(x => x.ID).ToList();
+            try
+            {
+                return _table
+                    .Include(x => x.Letra)
+                    .Include(x => x.Territorio)
+                    .Include(x => x.Saida)
+                    .OrderBy(x => x.ID).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
+
     }
 }

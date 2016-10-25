@@ -113,7 +113,7 @@ namespace Orix.MeuControle.Api.Providers
                 return null;
             }
         }
-        public async Task<IdentityResult> RegistrarUsuario(UsuarioModel usuarioModel)
+        public async Task<IdentityResult> RegistrarUsuario(UsuarioViewModel usuarioModel)
         {
             IdentityUser userIdentity = new IdentityUser
             {

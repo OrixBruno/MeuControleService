@@ -16,15 +16,14 @@ namespace Orix.MeuControle.Domain.Mapa
         public String UrlFoto { get; set; }
 
         public Int32 IdLetra { get; set; }
-        public Int32 IdSaida { get; set; }
+        public Int32? IdSaida { get; set; }
         public Int32 IdTerritorio { get; set; }
 
-        public virtual LetraDomainModel Letra { get; set; }
+        public LetraDomainModel Letra { get; set; }
+        public SaidaDomainModel Saida { get; set; }
+        public TerritorioDomainModel Territorio { get; set; }
 
-        public virtual SaidaDomainModel Saida { get; set; }
-
-        public virtual TerritorioDomainModel Territorio { get; set; }
-
-        public virtual FotoDomainModel Foto { get; set; }
+        public ICollection<SurdoDomainModel> Surdos { get; set; }
+        public ICollection<EmprestimoDomainModel> Emprestimo { get; set; }
     }
 }

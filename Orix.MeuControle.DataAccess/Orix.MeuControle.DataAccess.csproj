@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />
+    <Compile Include="Mappings\EmprestimoMapping.cs" />
     <Compile Include="Mappings\FotoMapping.cs" />
     <Compile Include="Mappings\LetraMapping.cs" />
     <Compile Include="Mappings\MapaMapping.cs" />

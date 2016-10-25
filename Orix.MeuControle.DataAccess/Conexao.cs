@@ -9,8 +9,8 @@ namespace Orix.MeuControle.DataAccess
 {
     public sealed class Conexao : DbContext
     {
-        public Conexao()//Data Source=(localdb)\v11.0;Initial Catalog=DBCONTROLEMAPAS;Integrated Security=True
-            : base(@"Data Source = bancoprojetos.mssql.somee.com; Initial Catalog = bancoprojetos; Persist Security Info=True;User ID = Aliorus_SQLLogin_1; Password=4ouegmr6y9")
+        public Conexao()
+            : base("Orix.MeuControle.Api.Properties.Settings.LocalConection")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
@@ -25,6 +25,7 @@ namespace Orix.MeuControle.DataAccess
         public DbSet<SaidaDomainModel> Saida { get; set; }
         public DbSet<TerritorioDomainModel> Territorio { get; set; }
         public DbSet<FotoDomainModel> Foto { get; set; }
+        public DbSet<EmprestimoDomainModel> Emprestimo { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -41,6 +42,7 @@ namespace Orix.MeuControle.DataAccess
             modelBuilder.Configurations.Add(new SaidaMapping());
             modelBuilder.Configurations.Add(new FotoMapping());
             modelBuilder.Configurations.Add(new SurdoMapping());
+            modelBuilder.Configurations.Add(new EmprestimoMapping());
         }
     }
 }

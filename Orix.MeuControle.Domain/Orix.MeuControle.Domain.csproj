@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapa\EmprestimoDomainModel.cs" />
     <Compile Include="Mapa\FotoDomainModel.cs" />
     <Compile Include="Mapa\LetraDomainModel.cs" />
     <Compile Include="Mapa\MapaDomainModel.cs" />

@@ -9,6 +9,7 @@ namespace Orix.MeuControle.Domain
 {
     public class SurdoDomainModel
     {
+        public Int32 ID { get; set; }
         public Int32 Codigo { get; set; }
         public String Nome { get; set; }
         public String Genero { get; set; }
@@ -17,8 +18,10 @@ namespace Orix.MeuControle.Domain
         public Int32 Numero { get; set; }
         public String Bairro { get; set; }
         public String Observacao { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public DateTime DataModificacao { get; set; }
 
-        public Int32 ID_Mapa { get; set; }
-        public virtual MapaDomainModel MapaDomainModel { get; set; }
+        public Int32? IdMapa { get; set; }
+        public MapaDomainModel Mapa { get; set; }
     }
 }

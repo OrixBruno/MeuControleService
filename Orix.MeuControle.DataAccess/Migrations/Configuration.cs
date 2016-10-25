@@ -5,14 +5,14 @@ namespace Orix.MeuControle.DataAccess.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Orix.MeuControle.DataAccess.Conexao>
+    internal sealed class Configuration : DbMigrationsConfiguration<Conexao>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Orix.MeuControle.DataAccess.Conexao context)
+        protected override void Seed(Conexao context)
         {
             //  This method will be called after migrating to the latest version.
 

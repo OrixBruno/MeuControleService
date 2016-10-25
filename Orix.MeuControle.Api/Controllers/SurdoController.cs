@@ -11,7 +11,6 @@ using System.Web.Http.Cors;
 namespace Orix.MeuControle.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [Authorize]
     public class SurdoController : ApiController
     {
         SurdoRepository _repository = new SurdoRepository();
@@ -20,7 +19,17 @@ namespace Orix.MeuControle.Api.Controllers
         {
             return _repository.Listar();
         }
-        // GET: api/v1/Surdo?nome=        
+        [HttpGet]
+        public int SurdosTotal()
+        {
+            return _repository.SurdosTotal();
+        }
+        [HttpGet]
+        public List<SurdoDomainModel> ListaOrdenada(String coluna, String texto)
+        {
+            return _repository.ListarOrdenado(coluna, texto);
+        }
+        // GET: api/v1/Surdo/Get?nome=        
         public List<SurdoDomainModel> Get(String nome)
         {
             return _repository.ListarPorTexto(nome);
@@ -34,12 +43,24 @@ namespace Orix.MeuControle.Api.Controllers
         // POST: api/Surdo
         public void Post(SurdoDomainModel dadoTela)
         {
+            dadoTela.DataCadastro = DateTime.Now;
+            dadoTela.DataModificacao = DateTime.Now;
             _repository.Cadastrar(dadoTela);
         }
-
+        [HttpPost]
+        public void PostLista(List<SurdoDomainModel> listaSurdo)
+        {
+            foreach (var item in listaSurdo)
+            {
+                item.DataCadastro = DateTime.Now;
+                item.DataModificacao = DateTime.Now;
+            }
+            _repository.CadastrarLista(listaSurdo);
+        }
         // PUT: api/Surdo
         public void Put(SurdoDomainModel dadoTela)
         {
+            dadoTela.DataModificacao = DateTime.Now;
             _repository.Editar(dadoTela);
         }
 
