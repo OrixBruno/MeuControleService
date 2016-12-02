@@ -1,0 +1,49 @@
+﻿@model IPagedList<SurdoViewModel>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="col-md-1"><a onclick="Ordenar('C');">Codigo</a></th>
+                <th><a onclick="Ordenar('N');">Nome</a></th>
+                <th class="col-md-1"><a onclick="Ordenar('I');">Idade</a></th>
+                <th><a onclick="Ordenar('R');">Rua</a></th>
+                <th class="col-md-1"><a onclick="Ordenar('M');">Numero</a></th>
+                <th><a onclick="Ordenar('B');">Bairro</a></th>
+                <th><a onclick="Ordenar('O');">Observações</a></th>
+                <th><a onclick="Ordenar('DC');">Data Cadastro</a></th>
+                <th><a onclick="Ordenar('DM');">Data Modificação</a></th>
+                <th><a onclick="Ordenar('MA');">Mapa</a></th>
+                <th class="col-md-1">Editar</th>
+                <th class="col-md-1">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var surdo in Model)
+            {
+                <tr>
+                    <td class="col-md-1">@surdo.Codigo</td>
+                    <td><a href="/ControleMapas/Surdo/Editar/@surdo.ID">@surdo.Nome</a></td>
+                    <td class="col-md-1">@surdo.Idade</td>
+                    <td>@surdo.Rua</td>
+                    <td class="col-md-1">@surdo.Numero</td>
+                    <td>@surdo.Bairro</td>
+                    <td>@surdo.Observacao</td>
+                    <td>@surdo.DataCadastro.ToString("dd/MM/yyyy")</td>
+                    <td>@surdo.DataModificacao.ToString("dd/MM/yyyy")</td>                    
+                    <td>@(surdo.Mapa != null ? @surdo.Mapa.Numero : '-')</td>
+                    <td class="col-md-1"><a class="glyphicon glyphicon-pencil" href="/ControleMapas/Surdo/Editar/@surdo.ID"></a></td>
+                    <td class="col-md-1"><a class="glyphicon glyphicon-trash" onclick="ExibirModalExcluir(@surdo.ID);"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Surdos listados: @Model.Count</td>
+                <td colspan="6">Total de surdos cadastrados:<span id="surdoTotal"></span></td>
+            </tr>
+        </tfoot>
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("ObterListaSurdosPagina",
+    new { page,nome = @ViewBag.Nome ?? "", coluna= @ViewBag.Coluna ?? "" }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "conteudoLista" }))
+</div>

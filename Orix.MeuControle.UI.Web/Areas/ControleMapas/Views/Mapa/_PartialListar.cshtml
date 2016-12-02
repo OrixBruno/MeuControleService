@@ -1,0 +1,8 @@
+﻿@model List<MapaViewModel>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="#" onclick="ChamadasAjax.Visualizar('/ControleMapas/Mapa/Visualizar/@item.ID','Visualizando mapa @item.Letra.Letra@item.Letra.ID');" class="list-group-item list-group-item-azul-claro">@item.Letra.Letra@item.Letra.ID - @item.Territorio.Nome</a>
+    }
+</div>

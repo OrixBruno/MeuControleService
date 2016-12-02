@@ -1,0 +1,34 @@
+﻿@model List<LetraViewModel>
+
+<div class="table-responsive">
+    <h4>Lista de Letras</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="col-md-1">Codigo</th>
+                <th>Letra</th>
+                <th>Descricao</th>
+                <th class="col-md-1">Editar</th>
+                <th class="col-md-1">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var letra in Model)
+            {
+                <tr>
+                    <td class="col-md-1">@letra.ID</td>
+                    <td>@letra.Letra</td>
+                    <td>@letra.Descricao</td>
+                    <td><a class="glyphicon glyphicon-pencil" onclick="ChamadasAjax.Editar('/ControleMapas/Letra/Editar/@letra.ID');"></a></td>
+                    <td><a class="glyphicon glyphicon-trash" onclick="ChamadasAjax.Excluir('/ControleMapas/Letra/Excluir/@letra.ID');"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Total de letras de territórios cadastrados: @Model.Count</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+

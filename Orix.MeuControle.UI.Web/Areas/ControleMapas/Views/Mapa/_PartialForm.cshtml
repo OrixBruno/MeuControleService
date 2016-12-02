@@ -1,0 +1,93 @@
+﻿@model MapaViewModel
+
+<div id="mensagem">
+
+</div>
+
+@using (Ajax.BeginForm(ViewContext.RouteData.Values["action"].ToString(), "Mapa", new AjaxOptions
+{
+    OnBegin = "Carregando",
+    OnComplete = "Concluido",
+    UpdateTargetId = "mensagem",
+    HttpMethod = "POST",
+    OnSuccess = "Sucesso",
+    OnFailure = "Error"
+}, new { @id = "formAdicionar", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr class="hr-cinza-2px" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Territorio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdTerritorio, (SelectList)ViewBag.SelectTerritorios, "Selecione...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdTerritorio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Letra, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdLetra, (SelectList)ViewBag.SelectLetras, "Selecione...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdLetra, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Cor, (SelectList)ViewBag.SelectCores, "Selecione...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Saida, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdSaida, (SelectList)ViewBag.SelectSaidas, "Selecione...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdSaida, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group display-none">
+            @Html.LabelFor(model => model.FileFoto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("foto", "foto", new { type = "file", @class = "form-control", accept = ".gif, .jpg, .jpeg, .png", @id = "uploadImage" })
+                @Html.ValidationMessageFor(model => model.FileFoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="limpar" name="limpar" type="reset" value="Limpar" class="btn btn-danger" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function Sucesso(resposta) {
+        //ChamadasAjax.Imagem("/ControleMapas/Mapa/AdicionarImagem")
+        //document.getElementById('formAdicionar').reset();
+    }
+    function Error(resposta) {
+
+    }
+    function Carregando() {
+        $("#myModal").modal('show');
+    }
+    function Concluido() {
+        $("#myModal").modal('hide');
+    }
+</script>

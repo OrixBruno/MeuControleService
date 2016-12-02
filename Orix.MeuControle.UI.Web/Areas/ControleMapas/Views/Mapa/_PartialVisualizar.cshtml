@@ -1,0 +1,64 @@
+﻿@model MapaViewModel
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <h4>Mapa @Model.Numero</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Numero)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cor)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UrlFoto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UrlFoto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IdLetra)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdLetra)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IdSaida)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdSaida)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IdTerritorio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdTerritorio)
+            </dd>
+
+        </dl>
+
+
+    </div>
+    <div class="panel-footer">
+        <p>
+            @Html.ActionLink("Editar", "Editar", new { id = Model.ID })
+        </p>
+    </div>
+</div>

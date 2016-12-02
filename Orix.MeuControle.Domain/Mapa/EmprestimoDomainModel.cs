@@ -12,8 +12,8 @@ namespace Orix.MeuControle.Domain.Mapa
         public int? IDMapa { get; set; }
         public String Publicador { get; set; }
         public DateTime DataEmprestimo { get; set; }
-        public DateTime DataDevolucao { get; set; }
+        public DateTime? DataDevolucao { get; set; }
 
-        public virtual MapaDomainModel Mapa { get; set; }
+        public MapaDomainModel Mapa { get; set; }
     }
 }

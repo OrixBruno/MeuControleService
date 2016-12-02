@@ -1,0 +1,33 @@
+﻿@model List<SaidaViewModel>
+
+<div class="table-responsive">
+    <h4>Lista de Saídas</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="col-md-1">Codigo</th>
+                <th>Local</th>
+                <th>Logradouro</th>
+                <th class="col-md-1">Editar</th>
+                <th class="col-md-1">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var saida in Model)
+            {
+                <tr>
+                    <td class="col-md-1">@saida.ID</td>
+                    <td>@saida.Local</td>
+                    <td>@saida.Logradouro</td>
+                    <td><a class="glyphicon glyphicon-pencil" onclick="ChamadasAjax.Editar('/ControleMapas/Saida/Editar/@saida.ID');"></a></td>
+                    <td><a class="glyphicon glyphicon-trash" onclick="ChamadasAjax.Excluir('/ControleMapas/Saida/Excluir/@saida.ID');"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Total de saídas cadastrados: @Model.Count</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

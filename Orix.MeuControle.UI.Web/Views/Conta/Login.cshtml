@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/style.min.css" rel="stylesheet" />
+    <link href="~/Content/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+</head>
+<body>
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    <!-- end #page-loader -->
+
+    <div class="login-cover">
+        <div class="login-cover-image"><img src="~/Content/images/bg-1.jpg" data-id="login-cover-image" alt="" /></div>
+        <div class="login-cover-bg"></div>
+    </div>
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">
+        <!-- begin login -->
+        <div class="login login-v2" data-pageload-addclass="animated flipInX">
+            <!-- begin brand -->
+            <div class="login-header">
+                <div class="brand">
+                    <span class="logo"></span> Controle dos Mapas
+                    <small>realize o login para ter acesso administrativo</small>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-sign-in"></i>
+                </div>
+            </div>
+            <!-- end brand -->
+            <div class="login-content">
+                <form method="post" class="margin-bottom-0">
+                    <div class="form-group m-b-20">
+                        <input name="Usuario" type="text" class="form-control input-lg" placeholder="Usuario" />
+                    </div>
+                    <div class="form-group m-b-20">
+                        <input name="Senha" type="password" class="form-control input-lg" placeholder="Senha" />
+                    </div>
+                    <div class="checkbox m-b-20">
+                        <label>
+                            <input name="Lembrar" type="checkbox" /> Lembrar Me
+                        </label>
+                    </div>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn btn-success btn-block btn-lg">Conectar</button>
+                    </div>
+                    <div class="m-t-20">
+                        Ainda não é membro? Clique <a href="#">aqui</a> para se registrar.
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end login -->
+
+        <ul class="login-bg-list">
+            <li class="active"><a href="#" data-click="change-bg"><img src="~/Content/images/bg-1.jpg" alt="" /></a></li>
+            <li><a href="#" data-click="change-bg"><img src="~/Content/images/bg-2.jpg" alt="" /></a></li>
+            <li><a href="#" data-click="change-bg"><img src="~/Content/images/bg-3.jpg" alt="" /></a></li>
+            <li><a href="#" data-click="change-bg"><img src="~/Content/images/bg-4.jpg" alt="" /></a></li>
+            <li><a href="#" data-click="change-bg"><img src="~/Content/images/bg-5.jpg" alt="" /></a></li>
+            <li><a href="#" data-click="change-bg"><img src="~/Content/images/bg-6.jpg" alt="" /></a></li>
+        </ul>
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="assets/crossbrowserjs/html5shiv.js"></script>
+        <script src="assets/crossbrowserjs/respond.min.js"></script>
+        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Scripts/login-v2.demo.min.js"></script>
+    <script src="~/Scripts/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <script>
+        $(function () {
+            App.init();
+            LoginV2.init();
+        });
+    </script>
+</body>
+</html>

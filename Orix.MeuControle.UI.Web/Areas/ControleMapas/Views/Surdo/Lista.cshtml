@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Surdos lista";
+}
+
+<div id="divCarregando" class="progresso">
+    <img src="@Url.Content("~/Content/images/carregando.gif")" />
+    <br />
+    Carregando...
+</div>
+
+<div id="mensagem">
+</div>
+
+<div class="btn btn-marginTop-15 form-inline">
+    <div class="form-group">
+        <label for="nomeBuscar">Nome</label>
+        <input type="text" class="form-control" name="nomeBuscar" id="nomeBuscar">
+    </div>
+    <input type="submit" name="carregar" id="carregar" value="Buscar" class="btn btn-default" />
+</div>
+<div id="conteudoLista">
+</div>
+@section ChamadaAjax{
+    <script>
+
+        $(function () {
+            CarregarLista();        
+        });
+
+        $('#carregar').click(function () {
+            $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Surdo/ObterListaSurdosPagina?nome=' + $('#nomeBuscar').val(),
+                dataType: 'html',
+                cache: false,
+                async: true,
+                beforeSend: function () {
+                    $('#myModal').modal('show');
+                },
+                success: function (data) {
+                    $('#conteudoLista').html(data);                   
+                },
+                complete: function () {
+                    $('#myModal').modal('hide');
+                    SurdosTotal();
+                }
+            });
+        });
+
+        function Ordenar(coluna) {
+            $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Surdo/ObterListaSurdosPagina?coluna=' + coluna + '&nome=' + $('#nomeBuscar').val() + '&page=',
+                dataType: 'html',
+                cache: false,
+                async: true,
+                beforeSend: function () {
+                    $('#myModal').modal('show');
+                },
+                success: function (data) {
+                    $('#conteudoLista').html(data);
+                },
+                complete: function () {
+                    $('#myModal').modal('hide');
+                    SurdosTotal();
+                }
+            });
+        };
+        function SurdosTotal() {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:81/api/v1/Surdo/SurdosTotal',
+                cache: false,
+                async: true,
+                dataType: 'html',
+                success: function (data) {
+                    $('#surdoTotal').text(data);
+                }
+            });
+        }
+        function CarregarLista() {
+            $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Surdo/ObterListaSurdosPagina',
+                dataType: 'html',
+                cache: false,
+                async: true,
+                beforeSend: function () {
+                    $('#myModal').modal('show');
+                },
+                success: function (data) {
+                    $('#conteudoLista').html(data);
+                },
+                complete: function () {
+                    $('#myModal').modal('hide');
+                    SurdosTotal();
+                }
+            });
+        };
+        function ExibirModalExcluir(codigo) {
+            $('#ModalExcluir').attr('data-id',codigo);            
+            $('#ModalExcluir').modal('show');            
+        };
+        function ExcluirSurdo(codigo) {
+            $.ajax({
+                type: 'GET',
+                url: '/ControleMapas/Surdo/Excluir/' + codigo,
+                async: true,
+                cache: false,
+                beforeSend: function () {
+                   
+                },
+                success: function (data) {
+                    $('#mensagem').html(data);
+                    CarregarLista();
+                },
+                complete: function () {
+                    $('#ModalExcluir').modal('hide');
+                }
+            });
+        };
+
+        //ATIVAR CARREGAMENTO ASYNC
+        $(document).ready(function () {
+            setInterval(CarregarLista, 500000);
+        });
+    </script>
+}

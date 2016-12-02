@@ -17,7 +17,7 @@ namespace Orix.MeuControle.DataAccess.Mappings
             ToTable("TB_EMPRESTIMO");
             HasKey(x => x.ID);
 
-            Property(x => x.IDMapa).HasColumnName("FK_ID_MAPA");
+            Property(x => x.IDMapa).HasColumnName("FK_ID_MAPA").HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             Property(x => x.Publicador).HasColumnName("DS_PUBLICADOR").HasMaxLength(300).IsRequired();
             Property(x => x.DataDevolucao).HasColumnName("DT_DEVOLUCAO");
             Property(x => x.DataEmprestimo).HasColumnName("DT_EMPRESTIMO").IsRequired();

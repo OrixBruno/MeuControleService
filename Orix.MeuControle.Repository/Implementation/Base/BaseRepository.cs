@@ -102,6 +102,12 @@ namespace Orix.MeuControle.Repository.Implementation.Base
                 if (ex.InnerException.InnerException.Message.Contains("Cannot insert duplicate key row in object"))
                     throw new Exception("Não é permitido inserir itens duplicados!");
 
+                if (ex.InnerException.InnerException.Message.Contains("A instrução INSERT conflitou com a restrição do FOREIGN KEY"))
+                    throw new Exception("Problemas com a chave estrangeira. Verifique se adicionou os valores corretamentes!");
+
+                if (ex.InnerException.InnerException.Message.Contains("A instrução DELETE conflitou com a restrição do REFERENCE"))
+                    throw new Exception("Não é possivel excluir itens utilizados em cadastros. Verifique o item a ser excluído!");
+
                 throw new Exception(ex.Message);
             }
         }

@@ -13,7 +13,7 @@ namespace Orix.MeuControle.Api.Controllers
     {
         EmprestimoRepository _repository = new EmprestimoRepository();
         // GET: api/Emprestimo
-        public IEnumerable<EmprestimoDomainModel> Get()
+        public List<EmprestimoDomainModel> Get()
         {
             return _repository.Listar();
         }
@@ -27,12 +27,14 @@ namespace Orix.MeuControle.Api.Controllers
         // POST: api/Emprestimo
         public void Post(EmprestimoDomainModel emprestimo)
         {
+            emprestimo.DataEmprestimo = DateTime.Now;
             _repository.Cadastrar(emprestimo);
         }
 
         // PUT: api/Emprestimo/5
         public void Put(EmprestimoDomainModel emprestimo)
         {
+            emprestimo.DataDevolucao = DateTime.Now;
             _repository.Editar(emprestimo);
         }
 

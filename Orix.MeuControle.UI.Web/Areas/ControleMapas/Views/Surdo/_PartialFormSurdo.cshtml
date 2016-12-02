@@ -1,0 +1,113 @@
+﻿@model SurdoViewModel
+
+<div id="mensagem">
+
+</div>
+
+@using (Ajax.BeginForm(ViewContext.RouteData.Values["action"].ToString(), "Surdo", new AjaxOptions
+{
+    OnBegin = "Carregando",
+    OnComplete = "Concluido",
+    UpdateTargetId = "mensagem",
+    HttpMethod = "POST",
+    OnSuccess = "Sucesso",
+    OnFailure = "Error"
+}, new { @id = "formAdicionar"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+
+            @Html.HiddenFor(x => x.ID)
+            @Html.HiddenFor(x => x.DataCadastro)
+            @Html.HiddenFor(x => x.DataModificacao)
+
+            @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Codigo, new { @type = "number" })
+                @Html.ValidationMessageFor(model => model.Codigo)
+            </div>
+
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Nome, new { @maxlength = "50" })
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+
+            @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.Genero, (SelectList)ViewBag.SelectGenero, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Genero)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Idade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Idade, new { @type = "number" })
+                @Html.ValidationMessageFor(model => model.Idade)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rua, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Rua, new { @maxlength = "50" })
+                @Html.ValidationMessageFor(model => model.Rua)
+            </div>
+
+            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.Numero, new { @type = "number" })
+                @Html.ValidationMessageFor(model => model.Numero)
+            </div>
+
+            @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Bairro, new { @maxlength = "50" })
+                @Html.ValidationMessageFor(model => model.Bairro)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Observacao, 4, 100, new { @maxlength = "200" })
+                @Html.ValidationMessageFor(model => model.Observacao)
+            </div>
+        </div>
+        <div class="form-group">
+        @Html.LabelFor(model => model.IdMapa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdMapa, (SelectList)ViewBag.SelectMapas, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdMapa)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="limpar" name="salvar" type="reset" value="Limpar" class="btn btn-danger" />
+                <input id="salvar" name="salvar" type="submit" value="Salvar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function Sucesso(resposta) {
+        if ("@ViewContext.RouteData.Values["action"].ToString()" == "Adicionar") {
+            document.getElementById('formAdicionar').reset();
+        }
+    }
+    function Error(resposta) {
+
+    }
+    function Carregando() {
+        $("#myModal").modal('show');
+    }
+    function Concluido() {
+        $("#myModal").modal('hide');
+    }
+</script>
+
