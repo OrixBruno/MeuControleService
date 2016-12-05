@@ -12,7 +12,15 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         RestApi<EmprestimoViewModel> _restApi = new RestApi<EmprestimoViewModel>();
         private void ListaMapa()
         {
-            TempData.Add("SelectMapas", new SelectList(new RestApi<MapaViewModel>().GetLista("Mapa", "Get"), "ID", "Numero", "Selecione..."));
+            var listaEmprestimos = _restApi.GetLista("", "");
+            listaEmprestimos.Select(x => x.IDMapa);
+            #warning CONTINUAR DESENVOLVMENTO AQUI
+
+            //var listaMapasDisponiveis = new RestApi<MapaViewModel>().GetLista("Mapa", "Get").Where(x =>{
+
+
+            //});
+            //TempData.Add("SelectMapas", new SelectList(listaMapasDisponiveis, "ID", "Numero", "Selecione..."));
         }
         #region GET
         // GET: ControleMapas/Emprestimo/Principal
