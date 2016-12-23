@@ -26,6 +26,21 @@ namespace Orix.MeuControle.Repository.Implementation
             }
 
         }
+        public new MapaDomainModel Buscar(int id)
+        {
+            try
+            {
+                return _table
+                    .Include(x => x.Letra)
+                    .Include(x => x.Territorio)
+                    .Include(x => x.Saida)
+                    .FirstOrDefault(x => x.ID == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
+        }
     }
 }

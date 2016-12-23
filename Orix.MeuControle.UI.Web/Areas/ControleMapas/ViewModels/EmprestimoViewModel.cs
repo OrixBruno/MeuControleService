@@ -9,10 +9,18 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.ViewModels
     public class EmprestimoViewModel
     {
         public int ID { get; set; }
-        [Display(Name ="Numero Mapa")]
-        public int? IDMapa { get; set; }
-        public String Publicador { get; set; }
+
+        [Display(Name ="Numero do mapa")]
+        [Required(ErrorMessage ="Por favor selecione o mapa.")]
+        public int IDMapa { get; set; }
+        public string Publicador { get; set; }
+
+        [Display(Name ="Data de empréstimo")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataEmprestimo { get; set; }
+
+        [Display(Name = "Data de devolução")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataDevolucao { get; set; }
 
         public MapaViewModel Mapa { get; set; }

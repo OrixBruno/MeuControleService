@@ -10,7 +10,7 @@ namespace Orix.MeuControle.DataAccess
     public sealed class Conexao : DbContext
     {
         public Conexao()
-            : base("Orix.MeuControle.Api.Properties.Settings.LocalConection")
+            : base(@"Data Source=BRUNO-PC\SQLSERVER;Initial Catalog=MAPASCONTROLE;Persist Security Info=True;User ID=sa;Password=7605786")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;

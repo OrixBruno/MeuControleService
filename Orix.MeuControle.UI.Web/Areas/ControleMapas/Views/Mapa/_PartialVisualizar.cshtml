@@ -21,19 +21,11 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.UrlFoto)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.UrlFoto)
-            </dd>
-
-            <dt>
                 @Html.DisplayNameFor(model => model.IdLetra)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.IdLetra)
+                @Html.DisplayFor(model => model.Letra.Letra)
             </dd>
 
             <dt>
@@ -41,7 +33,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.IdSaida)
+                @Html.DisplayFor(model => model.Saida.Local)
             </dd>
 
             <dt>
@@ -49,7 +41,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.IdTerritorio)
+                @Html.DisplayFor(model => model.Territorio.Nome)
             </dd>
 
         </dl>

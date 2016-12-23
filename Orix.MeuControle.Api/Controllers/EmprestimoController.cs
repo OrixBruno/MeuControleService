@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Orix.MeuControle.Api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EmprestimoController : ApiController
     {
         EmprestimoRepository _repository = new EmprestimoRepository();
@@ -27,14 +29,12 @@ namespace Orix.MeuControle.Api.Controllers
         // POST: api/Emprestimo
         public void Post(EmprestimoDomainModel emprestimo)
         {
-            emprestimo.DataEmprestimo = DateTime.Now;
             _repository.Cadastrar(emprestimo);
         }
 
         // PUT: api/Emprestimo/5
         public void Put(EmprestimoDomainModel emprestimo)
         {
-            emprestimo.DataDevolucao = DateTime.Now;
             _repository.Editar(emprestimo);
         }
 

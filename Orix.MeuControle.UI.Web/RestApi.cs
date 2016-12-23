@@ -41,7 +41,7 @@ namespace Orix.MeuControle.UI.Web
 
             throw new Exception(response.Content);
         }
-        public List<TClasse> GetLista(String controller, String action)
+        public List<TClasse> GetLista(String controller = "", String action = "")
         {
             _cliente = new RestClient(URL_BASE + controller + "/" + action);
             var request = new RestRequest(Method.GET);

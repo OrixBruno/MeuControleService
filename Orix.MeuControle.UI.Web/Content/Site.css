@@ -14,6 +14,14 @@ a{
     color: #004b71;
     background-color: #0087cb;
 }
+.list-group-item-vermelho-claro{
+    color: #940000;
+    background-color: #d10d0d;
+}
+.list-group-item-verde-claro{
+    color: #004b71;
+    background-color: #0f5a04;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

@@ -143,6 +143,26 @@
     <Content Include="Content\images\bg-5.jpg" />
     <Content Include="Content\images\bg-6.jpg" />
     <Content Include="Content\images\carregando.gif" />
+    <Content Include="Content\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="Content\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_a83300_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\mapa.css" />
     <Content Include="Content\PagedList.css" />
@@ -243,24 +263,33 @@
     <Content Include="Areas\ControleMapas\Views\Emprestimo\Principal.cshtml" />
     <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialAdicionar.cshtml" />
     <Content Include="Areas\ControleMapas\Views\Mapa\_PartialVisualizar.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialError.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\Adicionar.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\Devolucao.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialDevolucao.cshtml" />
     <None Include="Properties\PublishProfiles\BrunoOrix.pubxml" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\chamadas-ajax.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.12.0.js" />
-    <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\format-mask-input.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\login-v2.demo.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\theme.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -295,7 +324,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_PartialFooter.cshtml" />
     <Content Include="Views\Shared\_PartialEstilos.cshtml" />
@@ -327,7 +355,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1175</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

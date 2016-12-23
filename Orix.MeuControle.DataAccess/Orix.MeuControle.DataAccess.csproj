@@ -57,6 +57,10 @@
     <Compile Include="Mappings\SaidaMapping.cs" />
     <Compile Include="Mappings\SurdoMapping.cs" />
     <Compile Include="Mappings\TerritorioMapping.cs" />
+    <Compile Include="Migrations\201612081134050_Inicial.cs" />
+    <Compile Include="Migrations\201612081134050_Inicial.Designer.cs">
+      <DependentUpon>201612081134050_Inicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -78,6 +82,11 @@
       <Project>{138b209a-61a9-4517-b02d-ec1534653b65}</Project>
       <Name>Orix.MeuControle.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612081134050_Inicial.resx">
+      <DependentUpon>201612081134050_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

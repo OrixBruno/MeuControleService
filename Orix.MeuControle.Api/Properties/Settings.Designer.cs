@@ -26,7 +26,7 @@ namespace Orix.MeuControle.Api.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BRUNO-PC\\SQLSERVER;Initial Catalog=CONTROLEMAPAS;Persist Security Inf" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BRUNO-PC\\SQLSERVER;Initial Catalog=MAPASCONTROLE;Persist Security Inf" +
             "o=True;User ID=sa;Password=7605786")]
         public string LocalConection {
             get {

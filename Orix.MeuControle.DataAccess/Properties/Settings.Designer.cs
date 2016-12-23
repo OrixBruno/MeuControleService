@@ -26,11 +26,11 @@ namespace Orix.MeuControle.DataAccess.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=bancoprojetos.mssql.somee.com;Initial Catalog=bancoprojetos;Persist S" +
-            "ecurity Info=True;User ID=Aliorus_SQLLogin_1;Password=4ouegmr6y9")]
-        public string SomeeContext {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BRUNO-PC\\SQLSERVER;Initial Catalog=MAPASCONTROLE;Persist Security Inf" +
+            "o=True;User ID=sa;Password=7605786")]
+        public string ConectionLocal {
             get {
-                return ((string)(this["SomeeContext"]));
+                return ((string)(this["ConectionLocal"]));
             }
         }
     }

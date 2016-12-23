@@ -9,35 +9,57 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
 {
     public class EmprestimoController : Controller
     {
-        RestApi<EmprestimoViewModel> _restApi = new RestApi<EmprestimoViewModel>();
-        private void ListaMapa()
+        private RestApi<EmprestimoViewModel> _restApi = new RestApi<EmprestimoViewModel>();
+        private List<EmprestimoViewModel> _lstEmprestimosDisponiveis;
+        private List<MapaViewModel> _listMapasDisponiveis;
+        public EmprestimoController()
         {
-            var listaEmprestimos = _restApi.GetLista("", "");
-            listaEmprestimos.Select(x => x.IDMapa);
-            #warning CONTINUAR DESENVOLVMENTO AQUI
-
-            //var listaMapasDisponiveis = new RestApi<MapaViewModel>().GetLista("Mapa", "Get").Where(x =>{
-
-
-            //});
-            //TempData.Add("SelectMapas", new SelectList(listaMapasDisponiveis, "ID", "Numero", "Selecione..."));
+            _lstEmprestimosDisponiveis = _restApi.GetLista("Emprestimo", "Get").Where(x => x.DataDevolucao == null).ToList();
+            var listId = _lstEmprestimosDisponiveis.Select(x => x.IDMapa);
+            _listMapasDisponiveis = new RestApi<MapaViewModel>().GetLista("Mapa", "Get").Where(x => !listId.Contains(x.ID)).ToList();
+            ViewBag.SelectMapas = new SelectList(_listMapasDisponiveis, "ID", "Numero", "Selecione...");
+            ViewBag.SelectEmprestimos = new SelectList(_lstEmprestimosDisponiveis, "ID", "Mapa.Numero", "Selecione...");
+            ViewBag.Emprestimos = _lstEmprestimosDisponiveis;
         }
-        #region GET
+
         // GET: ControleMapas/Emprestimo/Principal
         public ActionResult Principal()
         {
-            ListaMapa();
             return View();
         }
-
-        // GET: ControleMapas/Emprestimo/Details/5
+        // GET: ControleMapas/Emprestimo/QtdMapaDisponivel
+        public JsonResult QtdMapaDisponivel()
+        {
+            return Json(new { qtdMapaDisponivel = _listMapasDisponiveis.Count, qtdEmprestimos = _lstEmprestimosDisponiveis.Count }, JsonRequestBehavior.AllowGet);
+        }
+        // GET: ControleMapas/Emprestimo/DataEmprestimo/id
+        public JsonResult DataEmprestimo(int id)
+        {
+            var dataEmprestimo = _lstEmprestimosDisponiveis.FirstOrDefault(x => x.ID == id).DataEmprestimo.ToShortDateString();
+            return Json(new { dataEmprestimo = dataEmprestimo }, JsonRequestBehavior.AllowGet);
+        }
+        // GET: ControleMapas/Emprestimo/Detalhes/5
         public ActionResult Detalhes(int id)
         {
             return View();
         }
-
-        // GET: ControleMapas/Emprestimo/Create
+        // GET: ControleMapas/Emprestimo/Adicionar
         public ActionResult Adicionar()
+        {
+            return View();
+        }
+        // GET: ControleMapas/Emprestimo/Devolucao
+        public ActionResult Devolucao()
+        {
+            return View();
+        }
+        // GET: ControleMapas/Emprestimo/Adicionar
+        public ActionResult FormularioDevolucao()
+        {
+            return PartialView("_PartialDevolucao");
+        }
+        // GET: ControleMapas/Emprestimo/Adicionar
+        public ActionResult FormularioAdicionar()
         {
             return PartialView("_PartialAdicionar");
         }
@@ -52,43 +74,51 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         {
             return View();
         }
-        #endregion
 
-        // POST: ControleMapas/Emprestimo/Create
+        // POST: ControleMapas/Emprestimo/Adicionar
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Adicionar(EmprestimoViewModel emprestimo)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                _restApi.Request(emprestimo, RestSharp.Method.POST, "Emprestimo", "Post");
+                ViewBag.Status = "success";
+                ViewBag.Message = "Emprestimo adicionado com sucesso!";
+                return PartialView("_PartialAlerta");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Message = ex.Message;
+                ViewBag.Status = "danger";
+                return PartialView("_PartialAlerta");
             }
         }
 
-        // POST: ControleMapas/Emprestimo/Edit/5
+        // POST: ControleMapas/Emprestimo/Editar
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(EmprestimoViewModel emprestimo)
         {
+            var emprestimoAtualizar = _lstEmprestimosDisponiveis.FirstOrDefault(x => x.ID == emprestimo.ID);
+            emprestimoAtualizar.DataDevolucao = emprestimo.DataDevolucao;
+
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                _restApi.Request(emprestimoAtualizar, RestSharp.Method.PUT, "Emprestimo", "Put");
+                ViewBag.Status = "success";
+                ViewBag.Message = "Emprestimo atualizado com sucesso!";
+                return PartialView("_PartialAlerta");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Message = ex.Message;
+                ViewBag.Status = "danger";
+                return PartialView("_PartialAlerta");
             }
         }
 
         // POST: ControleMapas/Emprestimo/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Excluir(int id, EmprestimoViewModel collection)
         {
             try
             {
@@ -96,9 +126,11 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Message = ex.Message;
+                ViewBag.Status = "danger";
+                return PartialView("_PartialAlerta");
             }
         }
     }

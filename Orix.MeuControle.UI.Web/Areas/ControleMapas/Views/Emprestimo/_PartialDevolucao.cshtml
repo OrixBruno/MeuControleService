@@ -1,0 +1,59 @@
+﻿@model EmprestimoViewModel
+<div id="mensagem">
+
+</div>
+
+@using (Ajax.BeginForm("Editar", "Emprestimo", new AjaxOptions
+{
+    OnBegin = "Carregando",
+    OnComplete = "Concluido",
+    UpdateTargetId = "mensagem",
+    HttpMethod = "POST",
+    OnSuccess = "Sucesso",
+    OnFailure = "Error"
+}, new { @id = "formDevolucao" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Numero do Mapa", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ID, (SelectList)ViewBag.SelectEmprestimos, "Selecione...", new { @class = "form-control", onchange = "setDateMin('/ControleMapas/Emprestimo/DataEmprestimo/'+this.value,'.datepicker');" })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataDevolucao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DataDevolucao, new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.DataDevolucao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    addCalendarioMascara(".datepicker", null);
+    function Sucesso(resposta) {
+
+    }
+    function Error(resposta) {
+
+    }
+    function Carregando() {
+        $("#myModal").modal('show');
+    }
+    function Concluido() {
+        $("#myModal").modal('hide');
+    }
+</script>

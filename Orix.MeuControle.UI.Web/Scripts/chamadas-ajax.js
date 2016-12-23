@@ -1,9 +1,61 @@
 ﻿var EmprestimosAjax = {
-    Adicionar: function () {
+    TemEmprestimo: function () {
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Emprestimo/QtdMapaDisponivel',
+                contentType: "application/json",
+                dataType: "json",
+                cache: false,
+                async: true,
+                beforeSend: function () {
+                    $('#myModal').modal('show');
+                },
+                success: function (data, status) {
+                    if (parseInt(data.qtdEmprestimos) < 1) {
+                        $('#conteudoModal').html("Não existe empréstimo cadastrado no sistema! Contate o administrador para mais informações.");
+                        $('#modalConfiguracao').modal('show');
+                        $('#tituloFooter').text("Mapa error...");
+                        return;
+                    }
+                    EmprestimosAjax.Devolucao();
+                },
+                complete: function () {
+                    $('#myModal').modal('hide');
+                }
+            });
+    },
+    MapaCadastrado: function () {
         $.ajax(
         {
             type: 'GET',
-            url: '/ControleMapas/Emprestimo/Adicionar',
+            url: '/ControleMapas/Emprestimo/QtdMapaDisponivel',
+            contentType: "application/json",
+            dataType: "json",
+            cache: false,
+            async: true,
+            beforeSend: function () {               
+                $('#myModal').modal('show');
+            },
+            success: function (data, status) {                
+                if (parseInt(data.qtdMapaDisponivel) < 1) {
+                    $('#conteudoModal').html("Não existe mapa disponivel para empréstimo no sistema! Contate o administrador para mais informações.");
+                    $('#modalConfiguracao').modal('show');
+                    $('#tituloFooter').text("Mapa error...");
+                    return;
+                }                
+                EmprestimosAjax.Adicionar();
+            },
+            complete: function () {
+                $('#myModal').modal('hide');
+            }
+        });
+    },
+    Devolucao: function () {
+        $.ajax(
+        {
+            type: 'GET',
+            url: '/ControleMapas/Emprestimo/FormularioDevolucao',
             dataType: 'html',
             cache: false,
             async: true,
@@ -11,7 +63,26 @@
                 $('#myModal').modal('show');
             },
             success: function (data) {
-                $('#FormularioAdicionar').html(data);
+                $('#FrmDevolucao').html(data);
+            },
+            complete: function () {
+                $('#myModal').modal('hide');
+            }
+        });
+    },
+    Adicionar: function () {
+        $.ajax(
+        {
+            type: 'GET',
+            url: '/ControleMapas/Emprestimo/FormularioAdicionar',
+            dataType: 'html',
+            cache: false,
+            async: true,
+            beforeSend: function () {
+                $('#myModal').modal('show');
+            },
+            success: function (data) {
+                $('#FrmAdicionar').html(data);
             },
             complete: function () {
                 $('#myModal').modal('hide');
