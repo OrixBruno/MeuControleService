@@ -23,15 +23,15 @@ namespace Orix.MeuControle.UI.Web
     public class RestApi<TClasse>
     {
         private RestClient _cliente;
-        private const String URL_BASE = "http://localhost:81/api/v1/";
         private const String API_BASE = "http://localhost:81/";
-        private const String URL_BASE_VISUAL_STUDIO = "http://localhost:4644/api/v1/";
+        private const String URL = "http://localhost:81/api/v1/";
+        private const String URL_LOCAL = "http://localhost:4644/api/v1/";
 
         //METODOS DE REQUEST
         //GET --------------->>>>>>
         public TClasse GetObjeto(String controller, String action)
         {
-            _cliente = new RestClient(URL_BASE + controller + "/" + action);
+            _cliente = new RestClient(URL + controller + "/" + action);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization",Token.getToken());
             var response = _cliente.Execute(request);
@@ -43,7 +43,7 @@ namespace Orix.MeuControle.UI.Web
         }
         public List<TClasse> GetLista(String controller = "", String action = "")
         {
-            _cliente = new RestClient(URL_BASE + controller + "/" + action);
+            _cliente = new RestClient(URL + controller + "/" + action);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", Token.getToken());
             var response = _cliente.Execute(request);
@@ -56,7 +56,7 @@ namespace Orix.MeuControle.UI.Web
         //POST, PUT, DELETE
         public virtual IRestResponse Request(TClasse objeto, Method metodo, String controller, String action)
         {
-            _cliente = new RestClient(URL_BASE + controller + "/" + action);
+            _cliente = new RestClient(URL + controller + "/" + action);
             var request = new RestRequest(metodo);
             request.AddJsonBody(objeto);
             request.AddHeader("Authorization", Token.getToken());

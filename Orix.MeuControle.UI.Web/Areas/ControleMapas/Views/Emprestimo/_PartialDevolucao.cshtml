@@ -1,7 +1,4 @@
 ﻿@model EmprestimoViewModel
-<div id="mensagem">
-
-</div>
 
 @using (Ajax.BeginForm("Editar", "Emprestimo", new AjaxOptions
 {
@@ -18,13 +15,9 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.Label("Numero do Mapa", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ID, (SelectList)ViewBag.SelectEmprestimos, "Selecione...", new { @class = "form-control", onchange = "setDateMin('/ControleMapas/Emprestimo/DataEmprestimo/'+this.value,'.datepicker');" })
-                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div id="selectMapas">
+
+        </div>        
 
         <div class="form-group">
             @Html.LabelFor(model => model.DataDevolucao, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -36,7 +29,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="button" id="salvar" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -44,6 +37,22 @@
 
 <script>
     addCalendarioMascara(".datepicker", null);
+    $('#salvar').click(function () {
+        var form = $('#formDevolucao');
+
+        if (!($('#ID').val())) {
+            EmprestimosAjax.Mensagem("Por favor selecione o mapa para devolução!");
+            return;
+        }
+
+        if (!($('#DataDevolucao').val())) {
+            EmprestimosAjax.Mensagem("Por favor selecione a data de devolução!");
+            return;
+        }
+
+        form.submit();
+    });
+
     function Sucesso(resposta) {
 
     }
@@ -55,5 +64,6 @@
     }
     function Concluido() {
         $("#myModal").modal('hide');
+        EmprestimosAjax.TemEmprestimo();
     }
 </script>

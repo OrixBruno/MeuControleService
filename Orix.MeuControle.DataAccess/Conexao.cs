@@ -26,6 +26,7 @@ namespace Orix.MeuControle.DataAccess
         public DbSet<TerritorioDomainModel> Territorio { get; set; }
         public DbSet<FotoDomainModel> Foto { get; set; }
         public DbSet<EmprestimoDomainModel> Emprestimo { get; set; }
+        public DbSet<ContaDomainModel> Conta { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,6 +44,7 @@ namespace Orix.MeuControle.DataAccess
             modelBuilder.Configurations.Add(new FotoMapping());
             modelBuilder.Configurations.Add(new SurdoMapping());
             modelBuilder.Configurations.Add(new EmprestimoMapping());
+            modelBuilder.Configurations.Add(new AutenticacaoMapping());
         }
     }
 }

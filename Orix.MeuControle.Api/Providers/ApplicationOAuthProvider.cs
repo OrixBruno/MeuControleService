@@ -10,6 +10,8 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Orix.MeuControle.Api.Models;
+using Orix.MeuControle.Repository.Implementation;
+using Orix.MeuControle.Domain;
 
 namespace Orix.MeuControle.Api.Providers
 {
@@ -17,6 +19,7 @@ namespace Orix.MeuControle.Api.Providers
     {
         private readonly string _publicClientId;
         UserManager<IdentityUser> _userManager;
+        private AutenticacaoRepository _repository = new AutenticacaoRepository();
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -32,23 +35,34 @@ namespace Orix.MeuControle.Api.Providers
         {
             //var header = context.OwinContext.Response.Headers.SingleOrDefault(h => h.Key == "Access-Control-Allow-Origin");
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-            using (var _repository = new AuthRepository())
+            if (context.UserName == "admin" && context.Password == "admin")
             {
-                var user = _repository.AuthenticateAdm(context.UserName, context.Password);
-
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "Usuário ou senhas incorretos.");
-                    return;
-                }
+                identity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
+                identity.AddClaim(new Claim("username", "admin"));
+                identity.AddClaim(new Claim(ClaimTypes.Name, "Bruno Silva"));
+                context.Validated(identity);
+                return;
+            }
+            if (context.UserName == "user" && context.Password == "user")
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+                identity.AddClaim(new Claim("username", "user"));
+                identity.AddClaim(new Claim(ClaimTypes.Name, "Usario final"));
+                context.Validated(identity);
+                return;
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            context.Validated(identity);
+            if (_repository.Login(new ContaDomainModel() { Usuario = context.UserName, Senha = context.Password }))
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+                identity.AddClaim(new Claim("username", "user"));
+                identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+                context.Validated(identity);
+            } else {
+                context.SetError("invalid_grant", "Usuário ou senhas incorretos.");
+            }
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
@@ -91,51 +105,4 @@ namespace Orix.MeuControle.Api.Providers
         }
     }
 
-    public class AuthRepository : IDisposable
-    {
-        private AuthContext _ctx;
-
-        private UserManager<IdentityUser> _userManager;
-
-        public AuthRepository()
-        {
-            _ctx = new AuthContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
-        }
-        internal object AuthenticateAdm(string usuario, string senha)
-        {
-            if (usuario == "adm" && senha == "123")
-            {
-                return new { };
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public async Task<IdentityResult> RegistrarUsuario(UsuarioViewModel usuarioModel)
-        {
-            IdentityUser userIdentity = new IdentityUser
-            {
-                UserName = usuarioModel.Usuario
-            };
-
-            var result = await _userManager.CreateAsync(userIdentity, usuarioModel.Senha);
-
-            return result;
-        }
-
-        public async Task<IdentityUser> ProcurarUsuario(string userName, string password)
-        {
-            IdentityUser user = await _userManager.FindAsync(userName, password);
-
-            return user;
-        }
-
-        public void Dispose()
-        {
-            _ctx.Dispose();
-            _userManager.Dispose();
-        }
-    }
 }

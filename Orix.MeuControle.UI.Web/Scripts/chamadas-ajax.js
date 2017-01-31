@@ -1,4 +1,43 @@
 ﻿var EmprestimosAjax = {
+    Mensagem: function (mensagem) {
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Emprestimo/Mensagem?mensagem=' + mensagem,
+                dataType: "html",
+                cache: false,
+                async: true,
+                success: function (data, status) {
+                    $('#mensagem').html(data);
+                }
+            });
+    },
+    SelectMapasDisponiveis: function () {
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Emprestimo/SelectMapasDisponiveis',
+                dataType: "html",
+                cache: false,
+                async: true,
+                success: function (data, status) {                    
+                    $('#selectMapas').html(data);
+                }
+            });
+    },
+    SelectMapasDevolucao: function () {
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Emprestimo/SelectMapasDevolucao',
+                dataType: "html",
+                cache: false,
+                async: true,
+                success: function (data, status) {
+                    $('#selectMapas').html(data);
+                }
+            });
+    },
     TemEmprestimo: function () {
         $.ajax(
             {
@@ -15,8 +54,7 @@
                     if (parseInt(data.qtdEmprestimos) < 1) {
                         $('#conteudoModal').html("Não existe empréstimo cadastrado no sistema! Contate o administrador para mais informações.");
                         $('#modalConfiguracao').modal('show');
-                        $('#tituloFooter').text("Mapa error...");
-                        return;
+                        $('#tituloFooter').text("Mapa error..."); 
                     }
                     EmprestimosAjax.Devolucao();
                 },
@@ -41,8 +79,7 @@
                 if (parseInt(data.qtdMapaDisponivel) < 1) {
                     $('#conteudoModal').html("Não existe mapa disponivel para empréstimo no sistema! Contate o administrador para mais informações.");
                     $('#modalConfiguracao').modal('show');
-                    $('#tituloFooter').text("Mapa error...");
-                    return;
+                    $('#tituloFooter').text("Mapa error...");                    
                 }                
                 EmprestimosAjax.Adicionar();
             },
@@ -67,6 +104,7 @@
             },
             complete: function () {
                 $('#myModal').modal('hide');
+                EmprestimosAjax.SelectMapasDevolucao();
             }
         });
     },
@@ -86,6 +124,7 @@
             },
             complete: function () {
                 $('#myModal').modal('hide');
+                EmprestimosAjax.SelectMapasDisponiveis();
             }
         });
     }

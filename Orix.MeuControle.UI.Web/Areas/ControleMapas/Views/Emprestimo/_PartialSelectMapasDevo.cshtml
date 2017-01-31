@@ -1,0 +1,9 @@
+﻿@model EmprestimoViewModel
+
+<div class="form-group">
+    @Html.Label("Numero do Mapa", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.ID, (SelectList)ViewBag.SelectEmprestimos, "Selecione...", new { @class = "form-control", onchange = "setDateMin('/ControleMapas/Emprestimo/DataEmprestimo/'+this.value,'.datepicker');" })
+        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+    </div>
+</div>

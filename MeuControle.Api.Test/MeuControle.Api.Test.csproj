@@ -66,6 +66,7 @@
     <Compile Include="EmprestimoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MapaTest.cs" />
+    <Compile Include="TesteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orix.MeuControle.Api\Orix.MeuControle.Api.csproj">

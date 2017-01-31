@@ -1,9 +1,5 @@
 ﻿@model EmprestimoViewModel
 
-<div id="mensagem">
-
-</div>
-
 @using (Ajax.BeginForm("Adicionar", "Emprestimo", new AjaxOptions
 {
     OnBegin = "Carregando",
@@ -20,12 +16,9 @@
         <h4>Adicionar empréstimo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDMapa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IDMapa, (SelectList)ViewBag.SelectMapas, "Selecione...", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDMapa, "", new { @class = "text-danger" })
-            </div>
+
+        <div id="selectMapas">
+
         </div>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -40,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Publicador, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Publicador, new SelectList(new List<object>() { new { Nome = "Bruno", Descricao = "Publicador" } }, "Nome", "Descricao", "Selecione..."), new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Publicador, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Publicador, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,15 +41,35 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input id="limpar" name="limpar" type="reset" value="Limpar" class="btn btn-danger" />
-                <input type="submit" value="Salvar" class="btn btn-success" />
+                <input type="button" id="salvar" value="Salvar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 <script>
-    addCalendarioMascara(".datepicker",null);
+    $('#salvar').click(function () {
+        var form = $('#formAdicionar');
+
+        if (!($('#IDMapa').val())) {
+            EmprestimosAjax.Mensagem("Por favor selecione o mapa para empréstimo!");
+            return;
+        }
+
+        if (!($('#DataEmprestimo').val())) {
+            EmprestimosAjax.Mensagem("Por favor selecione a data de empréstimo!");
+            return;
+        }
+        if (!($('#Publicador').val())) {
+            EmprestimosAjax.Mensagem("Por favor insira o nome do publicador!");
+            return;
+        }
+
+        form.submit();
+    });
+
+    addCalendarioMascara(".datepicker", null);
     function Sucesso(resposta) {
-        
+
     }
     function Error(resposta) {
 
@@ -66,5 +79,6 @@
     }
     function Concluido() {
         $("#myModal").modal('hide');
+        EmprestimosAjax.MapaCadastrado();
     }
 </script>

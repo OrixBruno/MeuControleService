@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />
+    <Compile Include="Mappings\AutenticacaoMapping.cs" />
     <Compile Include="Mappings\EmprestimoMapping.cs" />
     <Compile Include="Mappings\FotoMapping.cs" />
     <Compile Include="Mappings\LetraMapping.cs" />
@@ -60,6 +61,18 @@
     <Compile Include="Migrations\201612081134050_Inicial.cs" />
     <Compile Include="Migrations\201612081134050_Inicial.Designer.cs">
       <DependentUpon>201612081134050_Inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612231248588_Teste.cs" />
+    <Compile Include="Migrations\201612231248588_Teste.Designer.cs">
+      <DependentUpon>201612231248588_Teste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701261346424_TableConta.cs" />
+    <Compile Include="Migrations\201701261346424_TableConta.Designer.cs">
+      <DependentUpon>201701261346424_TableConta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701271520273_AtualizacaoMappingAdd.cs" />
+    <Compile Include="Migrations\201701271520273_AtualizacaoMappingAdd.Designer.cs">
+      <DependentUpon>201701271520273_AtualizacaoMappingAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +99,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612081134050_Inicial.resx">
       <DependentUpon>201612081134050_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612231248588_Teste.resx">
+      <DependentUpon>201612231248588_Teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701261346424_TableConta.resx">
+      <DependentUpon>201701261346424_TableConta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271520273_AtualizacaoMappingAdd.resx">
+      <DependentUpon>201701271520273_AtualizacaoMappingAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

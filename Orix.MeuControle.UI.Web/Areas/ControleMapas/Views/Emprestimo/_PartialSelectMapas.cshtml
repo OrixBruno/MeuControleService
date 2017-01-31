@@ -1,0 +1,9 @@
+﻿@model EmprestimoViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.IDMapa, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.IDMapa, (SelectList)ViewBag.SelectMapas, "Selecione...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IDMapa, "", new { @class = "text-danger" })
+    </div>
+</div>

@@ -29,7 +29,7 @@ namespace Orix.MeuControle.Api.Controllers
         // POST: api/Emprestimo
         public void Post(EmprestimoDomainModel emprestimo)
         {
-            _repository.Cadastrar(emprestimo);
+            _repository.CadastrarAtualizar(emprestimo);
         }
 
         // PUT: api/Emprestimo/5

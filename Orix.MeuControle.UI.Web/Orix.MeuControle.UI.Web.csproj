@@ -267,6 +267,8 @@
     <Content Include="Areas\ControleMapas\Views\Emprestimo\Adicionar.cshtml" />
     <Content Include="Areas\ControleMapas\Views\Emprestimo\Devolucao.cshtml" />
     <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialDevolucao.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialSelectMapas.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialSelectMapasDevo.cshtml" />
     <None Include="Properties\PublishProfiles\BrunoOrix.pubxml" />
     <Content Include="Scripts\chamadas-ajax.js" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
@@ -332,7 +334,6 @@
     <Content Include="Views\Shared\_PartialCarregando.cshtml" />
     <Content Include="Views\Shared\_PartialAlerta.cshtml" />
     <Content Include="Views\Conta\Login.cshtml" />
-    <Content Include="Views\Shared\_LayoutPrincipal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

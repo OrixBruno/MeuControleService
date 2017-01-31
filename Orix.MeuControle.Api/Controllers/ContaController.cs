@@ -14,10 +14,10 @@ namespace Orix.MeuControle.Api.Controllers
     public class ContaController : ApiController
     {
 
-        private AuthRepository _repo = null;
+        //private AuthRepository _repo = null;
         public ContaController()
         {
-            _repo = new AuthRepository();
+            //_repo = new AuthRepository();
         }
 
         [AllowAnonymous]
@@ -29,14 +29,14 @@ namespace Orix.MeuControle.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _repo.RegistrarUsuario(userModel);
+            //IdentityResult result = await _repo.RegistrarUsuario(userModel);
 
-            IHttpActionResult errorResult = GetErrorResult(result);
+            //IHttpActionResult errorResult = GetErrorResult(result);
 
-            if (errorResult != null)
-            {
-                return errorResult;
-            }
+            //if (errorResult != null)
+            //{
+            //    return errorResult;
+            //}
 
             return Ok();
         }
@@ -45,7 +45,7 @@ namespace Orix.MeuControle.Api.Controllers
         {
             if (disposing)
             {
-                _repo.Dispose();
+                //_repo.Dispose();
             }
 
             base.Dispose(disposing);

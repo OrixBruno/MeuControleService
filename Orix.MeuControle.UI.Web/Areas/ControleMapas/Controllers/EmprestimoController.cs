@@ -12,11 +12,13 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         private RestApi<EmprestimoViewModel> _restApi = new RestApi<EmprestimoViewModel>();
         private List<EmprestimoViewModel> _lstEmprestimosDisponiveis;
         private List<MapaViewModel> _listMapasDisponiveis;
+        private IEnumerable<int> _listId;
+
         public EmprestimoController()
         {
             _lstEmprestimosDisponiveis = _restApi.GetLista("Emprestimo", "Get").Where(x => x.DataDevolucao == null).ToList();
-            var listId = _lstEmprestimosDisponiveis.Select(x => x.IDMapa);
-            _listMapasDisponiveis = new RestApi<MapaViewModel>().GetLista("Mapa", "Get").Where(x => !listId.Contains(x.ID)).ToList();
+            _listId = _lstEmprestimosDisponiveis.Select(x => x.IDMapa);
+            _listMapasDisponiveis = new RestApi<MapaViewModel>().GetLista("Mapa", "Get").Where(x => !_listId.Contains(x.ID)).ToList();
             ViewBag.SelectMapas = new SelectList(_listMapasDisponiveis, "ID", "Numero", "Selecione...");
             ViewBag.SelectEmprestimos = new SelectList(_lstEmprestimosDisponiveis, "ID", "Mapa.Numero", "Selecione...");
             ViewBag.Emprestimos = _lstEmprestimosDisponiveis;
@@ -63,6 +65,18 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         {
             return PartialView("_PartialAdicionar");
         }
+        public ActionResult SelectMapasDisponiveis()
+        {
+            _listMapasDisponiveis = new RestApi<MapaViewModel>().GetLista("Mapa", "Get").Where(x => !_listId.Contains(x.ID)).ToList();
+            ViewBag.SelectMapas = new SelectList(_listMapasDisponiveis, "ID", "Numero", "Selecione...");
+            return PartialView("_PartialSelectMapas");
+        }
+        public ActionResult SelectMapasDevolucao()
+        {
+            _lstEmprestimosDisponiveis = _restApi.GetLista("Emprestimo", "Get").Where(x => x.DataDevolucao == null).ToList();
+            ViewBag.SelectEmprestimos = new SelectList(_lstEmprestimosDisponiveis, "ID", "Mapa.Numero", "Selecione...");
+            return PartialView("_PartialSelectMapasDevo");
+        }
         // GET: ControleMapas/Emprestimo/Edit/5
         public ActionResult Editar(int id)
         {
@@ -74,7 +88,12 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         {
             return View();
         }
-
+        public ActionResult Mensagem(string mensagem)
+        {
+            ViewBag.Message = mensagem;
+            ViewBag.Status = "danger";
+            return PartialView("_PartialAlerta");
+        }
         // POST: ControleMapas/Emprestimo/Adicionar
         [HttpPost]
         public ActionResult Adicionar(EmprestimoViewModel emprestimo)

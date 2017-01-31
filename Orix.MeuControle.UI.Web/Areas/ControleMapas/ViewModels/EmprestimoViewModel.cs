@@ -17,10 +17,12 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.ViewModels
 
         [Display(Name ="Data de empréstimo")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required(ErrorMessage = "Por favor selecione a data.")]
         public DateTime DataEmprestimo { get; set; }
 
         [Display(Name = "Data de devolução")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required(ErrorMessage = "Por favor selecione a data.")]
         public DateTime? DataDevolucao { get; set; }
 
         public MapaViewModel Mapa { get; set; }

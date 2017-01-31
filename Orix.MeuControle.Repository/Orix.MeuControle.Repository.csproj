@@ -51,12 +51,14 @@
   <ItemGroup>
     <Compile Include="Contracts\Base\IGravacao.cs" />
     <Compile Include="Contracts\Base\ILeitura.cs" />
+    <Compile Include="Contracts\IAutenticacaoRepository.cs" />
     <Compile Include="Contracts\IEmprestimoRepository.cs" />
     <Compile Include="Contracts\ILetraRepository.cs" />
     <Compile Include="Contracts\IMapaRepository.cs" />
     <Compile Include="Contracts\ISaidaRepository.cs" />
     <Compile Include="Contracts\ISurdoRepository.cs" />
     <Compile Include="Contracts\ITerritorioRepository.cs" />
+    <Compile Include="Implementation\AutenticacaoRepository.cs" />
     <Compile Include="Implementation\Base\BaseRepository.cs" />
     <Compile Include="Implementation\EmprestimoRepository.cs" />
     <Compile Include="Implementation\LetraRepository.cs" />
