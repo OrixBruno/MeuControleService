@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Listar";
+}
+
+<div id="divCarregando" class="progresso">
+    <img src="@Url.Content("~/Content/images/carregando.gif")" />
+    <br />
+    Carregando...
+</div>
+
+<div id="mensagem">
+</div>
+
+<div class="btn btn-marginTop-15 form-inline">
+    <div class="form-group">
+        <label for="nomeBuscar">Nome</label>
+        <input type="text" class="form-control" name="nomeBuscar" id="nomeBuscar">
+    </div>
+    <input type="submit" name="carregar" id="carregar" value="Buscar" class="btn btn-default" />
+</div>
+<div id="conteudoLista">
+</div>
+
+@section ChamadaAjax{
+    <script>
+        //ATIVAR CARREGAMENTO ASYNC
+        function CarregarListaEmprestimo() {
+            $.ajax(
+            {
+                type: 'GET',
+                url: '/ControleMapas/Emprestimo/ObterLista/' + $('#nomeBuscar').val(),
+                dataType: 'html',
+                cache: false,
+                async: true,
+                beforeSend: function () {
+                    $('#myModal').modal('show');
+                },
+                success: function (data) {
+                    $('#conteudoLista').html(data);
+                },
+                complete: function () {
+                    $('#myModal').modal('hide');
+                }
+            });
+        }
+        $(function () {
+            CarregarListaEmprestimo();
+            setInterval(CarregarListaEmprestimo, 500000);
+        });
+        $('#carregar').click(function () {
+            CarregarListaEmprestimo();
+        });
+    </script>
+}

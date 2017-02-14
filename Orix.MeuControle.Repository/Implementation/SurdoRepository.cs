@@ -23,7 +23,7 @@ namespace Orix.MeuControle.Repository.Implementation
             }
             
         }
-        public new List<SurdoDomainModel> ListarPorTexto(String texto)
+        public new List<SurdoDomainModel> ListarPorTexto(string texto)
         {
             if (texto == null)
                 return _table.Include(x => x.Mapa).OrderBy(x => x.Nome).ToList();
@@ -51,7 +51,7 @@ namespace Orix.MeuControle.Repository.Implementation
 
             return _table.Count();
 		}
-        public List<SurdoDomainModel> ListarOrdenado(String coluna, String texto)
+        public List<SurdoDomainModel> ListarOrdenado(string coluna, string texto)
         {
             IQueryable<SurdoDomainModel> tabelaFiltrada = _table;
 

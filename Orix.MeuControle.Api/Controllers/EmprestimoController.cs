@@ -1,5 +1,5 @@
 ﻿using Orix.MeuControle.Domain.Mapa;
-using Orix.MeuControle.Repository.Implementation;
+using Orix.MeuControle.Repository.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,13 @@ namespace Orix.MeuControle.Api.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EmprestimoController : ApiController
     {
-        EmprestimoRepository _repository = new EmprestimoRepository();
+        private readonly IEmprestimoRepository _repository;
+
+        public EmprestimoController(IEmprestimoRepository repository)
+        {
+            _repository = repository;
+        }
+
         // GET: api/Emprestimo
         public List<EmprestimoDomainModel> Get()
         {
@@ -26,7 +32,7 @@ namespace Orix.MeuControle.Api.Controllers
             return _repository.Buscar(id);
         }
 
-        // POST: api/Emprestimo
+        // POST: api/Emprestimo/Post
         public void Post(EmprestimoDomainModel emprestimo)
         {
             _repository.CadastrarAtualizar(emprestimo);

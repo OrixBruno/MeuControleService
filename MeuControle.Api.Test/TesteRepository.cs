@@ -1,13 +1,18 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Orix.MeuControle.Repository.Implementation;
+using Orix.MeuControle.Repository.Contracts;
 
 namespace MeuControle.Api.Test
 {
     [TestClass]
     public class TesteRepository
     {
-        AutenticacaoRepository _authRepository = new AutenticacaoRepository();
+        private readonly IAutenticacaoRepository _authRepository;
+        public TesteRepository(IAutenticacaoRepository authRepository)
+        {
+            _authRepository = authRepository;
+        }
         [TestMethod]
         public void ContaExiste()
         {

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Orix.MeuControle.Domain;
+using Orix.MeuControle.Repository.Contracts;
 
 namespace Orix.MeuControle.Repository.Implementation
 {
-    public class AutenticacaoRepository : Base.BaseRepository<ContaDomainModel>, Contracts.IAutenticacaoRepository
+    public class AutenticacaoRepository : Base.BaseRepository<ContaDomainModel>, IAutenticacaoRepository
     {
         public bool Login(ContaDomainModel conta)
         {

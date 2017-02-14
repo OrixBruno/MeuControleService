@@ -1,0 +1,37 @@
+﻿@model List<EmprestimoViewModel>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="col-md-1"><a onclick="" >Codigo</a></th>
+                <th class="col-md-1"><a onclick="" >Publicador</a></th>
+                <th class="col-md-1"><a onclick="" >Data de empréstimo</a></th>
+                <th class="col-md-1"><a onclick="" >Data de devolução</a></th>
+                <th class="col-md-1"><a onclick="" >Mapa</a></th>
+                <th class="col-md-1">Editar</th>
+                <th class="col-md-1">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emprestimo in Model)
+            {
+                <tr>
+                    <td class="col-md-1">@emprestimo.ID</td>
+                    <td class="col-md-1">@emprestimo.Publicador</td>
+                    <td class="col-md-1">@emprestimo.DataEmprestimo.ToShortDateString()</td>
+                    <td class="col-md-1">@(emprestimo.DataDevolucao != null? emprestimo.DataDevolucao.ToString() : " - ") </td>
+                    <td class="col-md-1">@emprestimo.Mapa.Letra.Letra@emprestimo.Mapa.Numero</td>
+                    <td class="col-md-1"><a class="glyphicon glyphicon-pencil" href="/ControleMapas/Emprestimo/Editar/@emprestimo.ID"></a></td>
+                    <td class="col-md-1"><a class="glyphicon glyphicon-trash" onclick="ExibirModalExcluirGenerico(@emprestimo.ID,'/ControleMapas/Emprestimo/Excluir/');"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Empréstimos listados: @Model.Count</td>
+                <td colspan="6">Total de empréstimos cadastrados:<span id="emprestimoTotal"></span></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

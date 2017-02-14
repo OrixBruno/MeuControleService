@@ -12,6 +12,7 @@ using Microsoft.Owin.Security.OAuth;
 using Orix.MeuControle.Api.Models;
 using Orix.MeuControle.Repository.Implementation;
 using Orix.MeuControle.Domain;
+using Orix.MeuControle.Repository.Contracts;
 
 namespace Orix.MeuControle.Api.Providers
 {
@@ -19,8 +20,12 @@ namespace Orix.MeuControle.Api.Providers
     {
         private readonly string _publicClientId;
         UserManager<IdentityUser> _userManager;
-        private AutenticacaoRepository _repository = new AutenticacaoRepository();
 
+        private readonly IAutenticacaoRepository _repository;
+        public ApplicationOAuthProvider(IAutenticacaoRepository repository)
+        {
+            _repository = repository;
+        }
         public ApplicationOAuthProvider(string publicClientId)
         {
             if (publicClientId == null)

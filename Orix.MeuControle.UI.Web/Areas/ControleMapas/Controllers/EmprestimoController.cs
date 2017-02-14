@@ -1,4 +1,6 @@
 ﻿using Orix.MeuControle.UI.Web.Areas.ControleMapas.ViewModels;
+using PagedList;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +52,10 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         {
             return View();
         }
+        public ActionResult Listar()
+        {
+            return View();
+        }
         // GET: ControleMapas/Emprestimo/Devolucao
         public ActionResult Devolucao()
         {
@@ -63,6 +69,7 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         // GET: ControleMapas/Emprestimo/Adicionar
         public ActionResult FormularioAdicionar()
         {
+            TempData.Add("Action", "Adicionar");
             return PartialView("_PartialAdicionar");
         }
         public ActionResult SelectMapasDisponiveis()
@@ -77,16 +84,42 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
             ViewBag.SelectEmprestimos = new SelectList(_lstEmprestimosDisponiveis, "ID", "Mapa.Numero", "Selecione...");
             return PartialView("_PartialSelectMapasDevo");
         }
+        public ActionResult ObterLista(int? id)
+        {
+            try
+            {
+                return PartialView("_PartialListar", _restApi.GetLista("Emprestimo", "Get"));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                ViewBag.Status = "danger";
+                return PartialView("_PartialAlerta");
+            }
+        }
         // GET: ControleMapas/Emprestimo/Edit/5
         public ActionResult Editar(int id)
         {
-            return View();
+            TempData.Add("Action", "Editar");
+            return View(_restApi.GetObjeto("Emprestimo", "Get/" + id));
         }
 
         // GET: ControleMapas/Emprestimo/Delete/5
         public ActionResult Excluir(int id)
         {
-            return View();
+            try
+            {
+                _restApi.Request(null, Method.DELETE, "Emprestimo", "Delete/" + id);
+                ViewBag.Status = "success";
+                ViewBag.Message = "Empréstimo excluido com sucesso!";
+                return PartialView("_PartialAlerta");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                ViewBag.Status = "danger";
+                return PartialView("_PartialAlerta");
+            }
         }
         public ActionResult Mensagem(string mensagem)
         {
@@ -100,7 +133,7 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         {
             try
             {
-                _restApi.Request(emprestimo, RestSharp.Method.POST, "Emprestimo", "Post");
+                _restApi.Request(emprestimo, Method.POST, "Emprestimo", "Post");
                 ViewBag.Status = "success";
                 ViewBag.Message = "Emprestimo adicionado com sucesso!";
                 return PartialView("_PartialAlerta");
@@ -119,6 +152,7 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         {
             var emprestimoAtualizar = _lstEmprestimosDisponiveis.FirstOrDefault(x => x.ID == emprestimo.ID);
             emprestimoAtualizar.DataDevolucao = emprestimo.DataDevolucao;
+            //emprestimoAtualizar.DataEmprestimo = emprestimo.DataEmprestimo != null ? emprestimo.DataEmprestimo : emprestimoAtualizar.DataEmprestimo;
 
             try
             {
@@ -135,22 +169,5 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
             }
         }
 
-        // POST: ControleMapas/Emprestimo/Delete/5
-        [HttpPost]
-        public ActionResult Excluir(int id, EmprestimoViewModel collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = ex.Message;
-                ViewBag.Status = "danger";
-                return PartialView("_PartialAlerta");
-            }
-        }
     }
 }

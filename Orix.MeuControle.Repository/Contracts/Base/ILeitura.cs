@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Orix.MeuControle.Repository.Contracts.Base
 {
-    interface ILeitura<TClasse>
+    public interface ILeitura<TClasse>
     {
         TClasse Buscar(Int32 id);
 

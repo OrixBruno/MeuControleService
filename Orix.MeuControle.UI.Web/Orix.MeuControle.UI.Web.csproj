@@ -127,12 +127,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin\css\AdminLTE.css" />
+    <Content Include="Content\admin\css\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
+    <Content Include="Content\admin\css\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="Content\admin\css\bootstrap.css" />
+    <Content Include="Content\admin\css\bootstrap.min.css" />
+    <Content Include="Content\admin\css\daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="Content\admin\css\font-awesome.css" />
+    <Content Include="Content\admin\css\font-awesome.min.css" />
+    <Content Include="Content\admin\css\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\admin\css\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Content\admin\css\ionicons.css" />
+    <Content Include="Content\admin\css\ionicons.min.css" />
+    <Content Include="Content\admin\css\jvectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="Content\admin\css\morris\morris.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\configuracoes.css" />
+    <Content Include="Content\cores-mapas.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\arrows.png" />
@@ -142,6 +157,8 @@
     <Content Include="Content\images\bg-4.jpg" />
     <Content Include="Content\images\bg-5.jpg" />
     <Content Include="Content\images\bg-6.jpg" />
+    <Content Include="Content\images\carousel-home\cartao_mapa.jpg" />
+    <Content Include="Content\images\carousel-home\Territorio_itaim.jpg" />
     <Content Include="Content\images\carregando.gif" />
     <Content Include="Content\images\ui-bg_flat_30_cccccc_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_50_5c5c5c_40x100.png" />
@@ -269,6 +286,10 @@
     <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialDevolucao.cshtml" />
     <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialSelectMapas.cshtml" />
     <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialSelectMapasDevo.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Surdo\_PartialSelectMapas.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\Listar.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\_PartialListar.cshtml" />
+    <Content Include="Areas\ControleMapas\Views\Emprestimo\Editar.cshtml" />
     <None Include="Properties\PublishProfiles\BrunoOrix.pubxml" />
     <Content Include="Scripts\chamadas-ajax.js" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
@@ -290,6 +311,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\login-v2.demo.min.js" />
+    <Content Include="Scripts\modal-dados.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Content\theme.css" />
     <Content Include="Web.config" />
@@ -343,6 +365,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\admin\fonts\" />
+    <Folder Include="Content\admin\js\" />
     <Folder Include="Views\Principal\" />
   </ItemGroup>
   <PropertyGroup>

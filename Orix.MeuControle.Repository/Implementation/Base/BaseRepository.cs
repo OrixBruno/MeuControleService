@@ -53,7 +53,7 @@ namespace Orix.MeuControle.Repository.Implementation.Base
                 {
                     SaveChanges();
                 });
-            }           
+            }
 
             return table;
         }
@@ -64,7 +64,7 @@ namespace Orix.MeuControle.Repository.Implementation.Base
             TratamentoExcecao(() =>
             {
                 SaveChanges();
-            });     
+            });
         }
 
         public TEntity Excluir(Int32 id)
@@ -111,5 +111,6 @@ namespace Orix.MeuControle.Repository.Implementation.Base
                 throw new Exception(ex.Message);
             }
         }
+        
     }
 }

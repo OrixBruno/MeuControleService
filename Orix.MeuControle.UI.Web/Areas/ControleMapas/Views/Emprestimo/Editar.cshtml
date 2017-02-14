@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+}
+
+<div id="mensagem">
+
+</div>
+
+<h4>Editar empréstimo</h4>
+<hr />
+
+@Html.Partial("_PartialAdicionar")
+
+
+@section ChamadaAjax{
+    <script>
+        $("#Publicador").prop('disabled', true);
+        addCalendarioMascara(".datepicker", null);
+    </script>    
+}

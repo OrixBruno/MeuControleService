@@ -12,6 +12,6 @@ namespace Orix.MeuControle.Domain.Mapa
         public String Letra { get; set; }
         public String Descricao { get; set; }
 
-        public virtual ICollection<MapaDomainModel> ListaMapa { get; set; }
+        public ICollection<MapaDomainModel> ListaMapa { get; set; }
     }
 }

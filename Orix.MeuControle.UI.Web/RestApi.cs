@@ -9,22 +9,22 @@ using System.Web;
 namespace Orix.MeuControle.UI.Web
 {
     public static class Token
-    { 
+    {
         public static void setToken(String token)
         {
             HttpContext.Current.Session["Token"] = token;
         }
         public static String getToken()
         {
-            return HttpContext.Current.Session["Token"].ToString();
+            return HttpContext.Current.Session["Token"].ToString() != null ? HttpContext.Current.Session["Token"].ToString() : "";
         }
     }
 
     public class RestApi<TClasse>
     {
         private RestClient _cliente;
-        private const String API_BASE = "http://localhost:81/";
-        private const String URL = "http://localhost:81/api/v1/";
+        private const String API_BASE = "http://localhost:4644/";
+        private const String URL = "http://localhost:4644/api/v1/";
         private const String URL_LOCAL = "http://localhost:4644/api/v1/";
 
         //METODOS DE REQUEST
@@ -33,7 +33,7 @@ namespace Orix.MeuControle.UI.Web
         {
             _cliente = new RestClient(URL + controller + "/" + action);
             var request = new RestRequest(Method.GET);
-            request.AddHeader("Authorization",Token.getToken());
+            request.AddHeader("Authorization", Token.getToken());
             var response = _cliente.Execute(request);
 
             if (response.StatusCode.ToString() == "OK")

@@ -2,7 +2,29 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
-a{
+
+.cursor-pointer span:hover {
+    text-decoration: underline !important;
+}
+
+.cursor-pointer :hover {
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+}
+
+a {
     cursor: pointer;
 }
 /* Set padding to keep content from hitting the edges */
@@ -10,18 +32,7 @@ a{
     padding-left: 15px;
     padding-right: 15px;
 }
-.list-group-item-azul-claro{
-    color: #004b71;
-    background-color: #0087cb;
-}
-.list-group-item-vermelho-claro{
-    color: #940000;
-    background-color: #d10d0d;
-}
-.list-group-item-verde-claro{
-    color: #004b71;
-    background-color: #0f5a04;
-}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -54,18 +65,22 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-.modal-sm{
+.modal-sm {
     margin: 215px auto !important;
 }
-.modal-carregando{
-    text-align:center;
+
+.modal-carregando {
+    text-align: center;
 }
-#mensagem{
+
+#mensagem {
     margin-top: 20px;
 }
-.hr-cinza-2px{
+
+.hr-cinza-2px {
     border-top: 2px solid #666e71 !important;
 }
+
 .display-none {
-    display:none;
+    display: none;
 }

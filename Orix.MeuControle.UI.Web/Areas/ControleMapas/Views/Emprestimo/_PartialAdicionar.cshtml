@@ -1,6 +1,6 @@
 ﻿@model EmprestimoViewModel
 
-@using (Ajax.BeginForm("Adicionar", "Emprestimo", new AjaxOptions
+@using (Ajax.BeginForm((string)TempData["Action"], "Emprestimo", new AjaxOptions
 {
     OnBegin = "Carregando",
     OnComplete = "Concluido",
@@ -13,10 +13,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Adicionar empréstimo</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div id="selectMapas">
 
         </div>
@@ -47,6 +43,7 @@
     </div>
 }
 <script>
+    addCalendarioMascara(".datepicker", null);
     $('#salvar').click(function () {
         var form = $('#formAdicionar');
 
@@ -67,7 +64,7 @@
         form.submit();
     });
 
-    addCalendarioMascara(".datepicker", null);
+   
     function Sucesso(resposta) {
 
     }

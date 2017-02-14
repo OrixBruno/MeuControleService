@@ -1,4 +1,5 @@
 ﻿using Orix.MeuControle.Domain.Mapa;
+using Orix.MeuControle.Repository.Contracts;
 using Orix.MeuControle.Repository.Implementation;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,11 @@ namespace Orix.MeuControle.Api.Controllers
     [Authorize]
     public class SaidaController : ApiController
     {
-        SaidaRepository _repository = new SaidaRepository();
+        private readonly ISaidaRepository _repository;
+        public SaidaController(ISaidaRepository repository)
+        {
+            _repository = repository;
+        }
         // GET: api/v1/Saida
         public List<SaidaDomainModel> Get()
         {

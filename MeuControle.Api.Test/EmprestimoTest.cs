@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Orix.MeuControle.Api.Controllers;
+using Orix.MeuControle.Repository.Contracts;
 
 namespace MeuControle.Api.Test
 {
@@ -12,10 +13,10 @@ namespace MeuControle.Api.Test
     [TestClass]
     public class EmprestimoTest
     {
-        EmprestimoController _controller = new EmprestimoController();
-        public EmprestimoTest()
+        private readonly IEmprestimoRepository _repository;
+        public EmprestimoTest(IEmprestimoRepository repository)
         {
-            
+            _repository = repository;
         }
 
         private TestContext testContextInstance;
@@ -61,7 +62,7 @@ namespace MeuControle.Api.Test
         [TestMethod]
         public void GetLista()
         {
-            var lista = _controller.Get();
+            var lista = _repository.Listar();
         }
     }
 }

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Orix.MeuControle.Repository.Contracts
 {
-    interface IAutenticacaoRepository : Base.ILeitura<ContaDomainModel>
+    public interface IAutenticacaoRepository : Base.ILeitura<ContaDomainModel>
     {
+        bool Login(ContaDomainModel conta);
     }
 }

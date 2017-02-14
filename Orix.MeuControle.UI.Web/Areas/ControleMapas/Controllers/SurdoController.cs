@@ -17,7 +17,7 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
         public SurdoController()
         {
             ViewBag.SelectGenero = new SelectList(_listGenero, "Selecione...");
-            ViewBag.SelectMapas = new SelectList(new RestApi<MapaViewModel>().GetLista("Mapa", "Get"), "ID", "Numero", "Selecione...");
+            ViewBag.SelectMapas = new SelectList(new RestApi<MapaViewModel>().GetLista("Mapa", "Get"), "ID", "Letra.Letra,Numero", "Selecione...");
         }
 
         #region GET

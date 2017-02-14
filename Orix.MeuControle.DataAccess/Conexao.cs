@@ -4,6 +4,7 @@ using Orix.MeuControle.Domain.Mapa;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Diagnostics;
 
 namespace Orix.MeuControle.DataAccess
 {
@@ -17,6 +18,7 @@ namespace Orix.MeuControle.DataAccess
 
             Database.SetInitializer<Conexao>(new CreateDatabaseIfNotExists<Conexao>());
             //Database.SetInitializer<Conexao>(new MigrateDatabaseToLatestVersion<Conexao, Configuration>());
+            Database.Log = s => Debug.WriteLine(s);
         }
 
         public DbSet<SurdoDomainModel> Surdo { get; set; }

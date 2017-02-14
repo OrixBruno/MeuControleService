@@ -7,7 +7,6 @@ namespace Orix.MeuControle.Repository.Implementation
 {
     public class TerritorioRepository : BaseRepository<TerritorioDomainModel>, Contracts.ITerritorioRepository
     {
-
         public new List<TerritorioDomainModel> Listar()
         {
             return base.Listar().OrderBy(x => x.Nome).ToList();

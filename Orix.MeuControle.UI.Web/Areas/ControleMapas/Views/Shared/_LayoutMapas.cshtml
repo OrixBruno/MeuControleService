@@ -31,6 +31,7 @@
                                     <ul class="dropdown-menu sub-menu">
                                         <li><a href="/ControleMapas/Emprestimo/Adicionar">Adicionar</a></li>
                                         <li><a href="/ControleMapas/Emprestimo/Devolucao">Devolução</a></li>
+                                        <li><a href="/ControleMapas/Emprestimo/Listar">Listar</a></li>
                                     </ul>
                                 </li>
 
@@ -112,6 +113,28 @@
                 </div>
             </div>
         </div>
+
+        <!-- MODAL GENERICO PARA EXCLUSAO -->
+        <div id="ModalExcluirGenerico" class="modal fade" tabindex="-1" role="dialog" data-id=""  data-url="">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Excluir</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Deseja realmente excluir?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="ChamadasAjax.ModalExcluir($('#ModalExcluirGenerico').attr('data-id'), $('#ModalExcluirGenerico').attr('data-url'));">Excluir</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- MODAL GENERICO PARA EXCLUSAO -->
+
+
         <div id="ModalExcluir" class="modal fade" tabindex="-1" role="dialog" data-id="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -140,6 +163,11 @@
         </div>
 
         @Html.Partial("_PartialModalConfig")
+
+        <div id="carousel" class="container">
+            
+
+        </div>
 
         <div id="body-section" class="container">
             @RenderBody()

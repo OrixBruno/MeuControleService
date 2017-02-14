@@ -1,4 +1,5 @@
 ﻿<div class="alert alert-@ViewBag.Status alert-dismissible" role="alert">
+    <input type="hidden" id="status" name="status" value="@(ViewBag.Status != null?ViewBag.Status:String.Empty)" />
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     @ViewBag.Message
 </div>

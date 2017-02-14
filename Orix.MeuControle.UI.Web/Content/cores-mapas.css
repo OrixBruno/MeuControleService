@@ -1,0 +1,19 @@
+﻿
+.list-group-item-azul{
+    background-color: #0087cb;
+}
+.list-group-item-vermelho{
+    background-color: #d10d0d;
+}
+.list-group-item-verde{
+    background-color: #17a802;
+}
+.list-group-item-cinza{
+    background-color: #808080;
+}
+.list-group-item-azul.escuro{
+    background-color: #00155a;
+}
+.list-group-item-verde.escuro{
+    background-color: #0f5a04;
+}

@@ -22,11 +22,11 @@
 </div>
 @section ChamadaAjax{
     <script>
-
+        //ATIVAR CARREGAMENTO ASYNC
         $(function () {
-            CarregarLista();        
+            CarregarLista();
+            setInterval(CarregarLista, 500000);
         });
-
         $('#carregar').click(function () {
             $.ajax(
             {
@@ -39,27 +39,6 @@
                     $('#myModal').modal('show');
                 },
                 success: function (data) {
-                    $('#conteudoLista').html(data);                   
-                },
-                complete: function () {
-                    $('#myModal').modal('hide');
-                    SurdosTotal();
-                }
-            });
-        });
-
-        function Ordenar(coluna) {
-            $.ajax(
-            {
-                type: 'GET',
-                url: '/ControleMapas/Surdo/ObterListaSurdosPagina?coluna=' + coluna + '&nome=' + $('#nomeBuscar').val() + '&page=',
-                dataType: 'html',
-                cache: false,
-                async: true,
-                beforeSend: function () {
-                    $('#myModal').modal('show');
-                },
-                success: function (data) {
                     $('#conteudoLista').html(data);
                 },
                 complete: function () {
@@ -67,65 +46,6 @@
                     SurdosTotal();
                 }
             });
-        };
-        function SurdosTotal() {
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:81/api/v1/Surdo/SurdosTotal',
-                cache: false,
-                async: true,
-                dataType: 'html',
-                success: function (data) {
-                    $('#surdoTotal').text(data);
-                }
-            });
-        }
-        function CarregarLista() {
-            $.ajax(
-            {
-                type: 'GET',
-                url: '/ControleMapas/Surdo/ObterListaSurdosPagina',
-                dataType: 'html',
-                cache: false,
-                async: true,
-                beforeSend: function () {
-                    $('#myModal').modal('show');
-                },
-                success: function (data) {
-                    $('#conteudoLista').html(data);
-                },
-                complete: function () {
-                    $('#myModal').modal('hide');
-                    SurdosTotal();
-                }
-            });
-        };
-        function ExibirModalExcluir(codigo) {
-            $('#ModalExcluir').attr('data-id',codigo);            
-            $('#ModalExcluir').modal('show');            
-        };
-        function ExcluirSurdo(codigo) {
-            $.ajax({
-                type: 'GET',
-                url: '/ControleMapas/Surdo/Excluir/' + codigo,
-                async: true,
-                cache: false,
-                beforeSend: function () {
-                   
-                },
-                success: function (data) {
-                    $('#mensagem').html(data);
-                    CarregarLista();
-                },
-                complete: function () {
-                    $('#ModalExcluir').modal('hide');
-                }
-            });
-        };
-
-        //ATIVAR CARREGAMENTO ASYNC
-        $(document).ready(function () {
-            setInterval(CarregarLista, 500000);
         });
     </script>
 }

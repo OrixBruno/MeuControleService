@@ -16,7 +16,11 @@ namespace Orix.MeuControle.Repository.Implementation
             try
             {
                 return _table
+                    .AsNoTracking()
                     .Include(x => x.Mapa)
+                    .Include(x => x.Mapa.Letra)
+                    .OrderBy(x => x.Mapa.Letra.Letra)
+                    .ThenBy(x => x.Mapa.Numero)
                     .ToList();
             }
             catch (Exception ex)
@@ -24,27 +28,38 @@ namespace Orix.MeuControle.Repository.Implementation
                 throw new Exception(ex.Message);
             }
         }
+        
         public EmprestimoDomainModel CadastrarAtualizar(EmprestimoDomainModel emprestimoTela)
         {
-            var emprestimoExistente = _table.FirstOrDefault(x => x.IDMapa == emprestimoTela.IDMapa);
-            if (emprestimoExistente != null)
+            try
             {
-                emprestimoExistente.DataDevolucao = null;
-                emprestimoExistente.DataEmprestimo = DateTime.Now;
-                emprestimoExistente.Publicador = emprestimoTela.Publicador;
-                _conexao.Entry(emprestimoExistente).State = EntityState.Modified;
-                _conexao.SaveChanges();
-                return emprestimoExistente;
-            }
+                var emprestimoExistente = _table.FirstOrDefault(x => x.IDMapa == emprestimoTela.IDMapa);
+                if (emprestimoExistente != null)
+                {
+                    if(emprestimoExistente.DataDevolucao == null)
+                        ValidaDevolucao(emprestimoTela);
+                    emprestimoExistente.DataDevolucao = null;
+                    emprestimoExistente.DataEmprestimo = emprestimoTela.DataEmprestimo;
+                    emprestimoExistente.Publicador = emprestimoTela.Publicador;
+                    _conexao.Entry(emprestimoExistente).State = EntityState.Modified;
+                    _conexao.SaveChanges();
+                    return emprestimoExistente;
+                }
 
-            ValidaEmprestimo(emprestimoTela);
-            var emprestimo = _table.Add(emprestimoTela);
-            _conexao.SaveChanges();
-            return emprestimo;
+                ValidaEmprestimo(emprestimoTela);
+                var emprestimo = _table.Add(emprestimoTela);
+                _conexao.SaveChanges();
+                return emprestimo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
         private void ValidaDevolucao(EmprestimoDomainModel emprestimoTela)
         {
-            if (emprestimoTela.ID < 1)
+            if (emprestimoTela.IDMapa < 1)
             {
                 throw new Exception("Por favor selecione o mapa para devolução!");
             }
@@ -68,5 +83,6 @@ namespace Orix.MeuControle.Repository.Implementation
                 throw new Exception("Por favor insira o nome do publicador!");
             }
         }
+        
     }
 }

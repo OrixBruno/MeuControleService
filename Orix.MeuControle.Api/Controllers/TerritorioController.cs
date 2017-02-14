@@ -1,4 +1,5 @@
 ﻿using Orix.MeuControle.Domain.Mapa;
+using Orix.MeuControle.Repository.Contracts;
 using Orix.MeuControle.Repository.Implementation;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,11 @@ namespace Orix.MeuControle.Api.Controllers
     [Authorize]
     public class TerritorioController : ApiController
     {
-        TerritorioRepository _repository = new TerritorioRepository();
+        private readonly ITerritorioRepository _repository;
+        public TerritorioController(ITerritorioRepository repository)
+        {
+            _repository = repository;
+        }
         // GET: api/v1/Territorio
         public List<TerritorioDomainModel> Get()
         {

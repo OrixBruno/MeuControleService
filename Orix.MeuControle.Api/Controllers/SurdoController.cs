@@ -1,4 +1,5 @@
 ﻿using Orix.MeuControle.Domain;
+using Orix.MeuControle.Repository.Contracts;
 using Orix.MeuControle.Repository.Implementation;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ namespace Orix.MeuControle.Api.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SurdoController : ApiController
     {
-        SurdoRepository _repository = new SurdoRepository();
+        private readonly ISurdoRepository _repository;
+        public SurdoController(ISurdoRepository repository)
+        {
+            _repository = repository;
+        }
         // GET: api/Surdo
         public List<SurdoDomainModel> Get()
         {
@@ -55,7 +60,7 @@ namespace Orix.MeuControle.Api.Controllers
                 item.DataCadastro = DateTime.Now;
                 item.DataModificacao = DateTime.Now;
             }
-            _repository.CadastrarLista(listaSurdo);
+           _repository.CadastrarLista(listaSurdo);
         }
         // PUT: api/Surdo
         public void Put(SurdoDomainModel dadoTela)

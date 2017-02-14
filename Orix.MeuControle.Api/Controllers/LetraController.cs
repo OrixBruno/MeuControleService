@@ -1,4 +1,5 @@
 ﻿using Orix.MeuControle.Domain.Mapa;
+using Orix.MeuControle.Repository.Contracts;
 using Orix.MeuControle.Repository.Implementation;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,11 @@ namespace Orix.MeuControle.Api.Controllers
     [Authorize]
     public class LetraController : ApiController
     {
-        LetraRepository _repository = new LetraRepository();
+        private readonly ILetraRepository _repository;
+        public LetraController(ILetraRepository repository)
+        {
+            _repository = repository;
+        }
         // GET: api/v1/Letra
         public List<LetraDomainModel> Get()
         {

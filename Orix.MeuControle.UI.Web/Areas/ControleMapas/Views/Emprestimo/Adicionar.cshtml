@@ -6,13 +6,19 @@
 
 </div>
 
+<h4>Adicionar empréstimo</h4>
+<hr />
+
 <div id="FrmAdicionar">
 
 </div>
+
 @section ChamadaAjax{
     <script>
+        addCalendarioMascara(".datepicker", null);
         $(function () {
             EmprestimosAjax.MapaCadastrado();            
         });
     </script>
+
 }

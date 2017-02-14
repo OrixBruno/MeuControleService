@@ -60,6 +60,19 @@ namespace Orix.MeuControle.UI.Web.Areas.ControleMapas.Controllers
                 return View();
             }
         }
+        public ActionResult ListarAjax()
+        {
+            try
+            {
+                return PartialView("_PartialListar", _mapaRest.GetLista("Mapa", "Get"));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                ViewBag.Status = "danger";
+                return View();
+            }
+        }
         public ActionResult Visualizar(int id)
         {
             try

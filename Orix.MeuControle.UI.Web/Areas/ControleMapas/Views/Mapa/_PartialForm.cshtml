@@ -78,8 +78,10 @@
 
 <script>
     function Sucesso(resposta) {
+        if ($('#status').val() == 'success') 
+            $('#formAdicionar')[0].reset();
+
         //ChamadasAjax.Imagem("/ControleMapas/Mapa/AdicionarImagem")
-        //document.getElementById('formAdicionar').reset();
     }
     function Error(resposta) {
 

@@ -20,7 +20,7 @@
                 dataType: "html",
                 cache: false,
                 async: true,
-                success: function (data, status) {                    
+                success: function (data, status) {
                     $('#selectMapas').html(data);
                 }
             });
@@ -54,7 +54,7 @@
                     if (parseInt(data.qtdEmprestimos) < 1) {
                         $('#conteudoModal').html("Não existe empréstimo cadastrado no sistema! Contate o administrador para mais informações.");
                         $('#modalConfiguracao').modal('show');
-                        $('#tituloFooter').text("Mapa error..."); 
+                        $('#tituloFooter').text("Mapa error...");
                     }
                     EmprestimosAjax.Devolucao();
                 },
@@ -72,15 +72,15 @@
             dataType: "json",
             cache: false,
             async: true,
-            beforeSend: function () {               
+            beforeSend: function () {
                 $('#myModal').modal('show');
             },
-            success: function (data, status) {                
+            success: function (data, status) {
                 if (parseInt(data.qtdMapaDisponivel) < 1) {
                     $('#conteudoModal').html("Não existe mapa disponivel para empréstimo no sistema! Contate o administrador para mais informações.");
                     $('#modalConfiguracao').modal('show');
-                    $('#tituloFooter').text("Mapa error...");                    
-                }                
+                    $('#tituloFooter').text("Mapa error...");
+                }
                 EmprestimosAjax.Adicionar();
             },
             complete: function () {
@@ -132,7 +132,41 @@
 
 var ChamadasAjax = {
     id: "",
-    Visualizar : function(url, titulo){
+    ListaMapas: function (url) {
+        $.ajax(
+            {
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                cache: false,
+                async: true,
+                success: function (data) {
+                    $('#ListaMapas').html(data);
+                }
+            });
+    },
+    ModalExcluir: function (codigo, url) {
+        $.ajax({
+            type: 'GET',
+            url: url + codigo,
+            async: true,
+            cache: false,
+            beforeSend: function () {
+
+            },
+            success: function (data) {
+                $('#mensagem').html(data);
+            },
+            complete: function () {
+                $('#ModalExcluirGenerico').modal('hide');
+                $('#ListaMapas').html('');
+                $('#conteudoLista').html('');
+                ChamadasAjax.ListaMapas('/ControleMapas/Mapa/ListarAjax');
+                CarregarListaEmprestimo();
+            }
+        });
+    },
+    Visualizar: function (url, titulo) {
         $.ajax(
             {
                 type: 'GET',
@@ -293,4 +327,75 @@ var ChamadasAjax = {
                 }
             });
     }
+}
+
+function ExcluirSurdo(codigo) {
+    $.ajax({
+        type: 'GET',
+        url: '/ControleMapas/Surdo/Excluir/' + codigo,
+        async: true,
+        cache: false,
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            $('#mensagem').html(data);
+            CarregarLista();
+        },
+        complete: function () {
+            $('#ModalExcluir').modal('hide');
+        }
+    });
+};
+function CarregarLista() {
+    $.ajax(
+    {
+        type: 'GET',
+        url: '/ControleMapas/Surdo/ObterListaSurdosPagina',
+        dataType: 'html',
+        cache: false,
+        async: true,
+        beforeSend: function () {
+            $('#myModal').modal('show');
+        },
+        success: function (data) {
+            $('#conteudoLista').html(data);
+        },
+        complete: function () {
+            $('#myModal').modal('hide');
+            SurdosTotal();
+        }
+    });
+};
+function Ordenar(coluna) {
+    $.ajax(
+    {
+        type: 'GET',
+        url: '/ControleMapas/Surdo/ObterListaSurdosPagina?coluna=' + coluna + '&nome=' + $('#nomeBuscar').val() + '&page=',
+        dataType: 'html',
+        cache: false,
+        async: true,
+        beforeSend: function () {
+            $('#myModal').modal('show');
+        },
+        success: function (data) {
+            $('#conteudoLista').html(data);
+        },
+        complete: function () {
+            $('#myModal').modal('hide');
+            SurdosTotal();
+        }
+    });
+};
+function SurdosTotal() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://projetos.serveftp.com:81/api/v1/Surdo/SurdosTotal',
+        cache: false,
+        async: true,
+        dataType: 'html',
+        success: function (data) {
+            $('#surdoTotal').text(data);
+        }
+    });
 }
